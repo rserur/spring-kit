@@ -51,6 +51,10 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 gem 'simple_form'
 gem 'devise'
 
