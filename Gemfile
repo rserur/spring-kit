@@ -38,3 +38,21 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'valid_attribute'
+  gem 'faker'
+end
+
+gem 'simple_form'
+
+group :assets do
+  gem 'compass-rails'
+  gem 'susy'
+end

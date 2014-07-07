@@ -28,3 +28,5 @@ module SpringKit
     # config.i18n.default_locale = :de
   end
 end
+
+config.compass.require "susy"
