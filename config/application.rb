@@ -29,4 +29,4 @@ module SpringKit
   end
 end
 
-config.compass.require "susy"
+

@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: spring_kit_production
-  username: spring_kit
+  username:
   password: <%= ENV['SPRING_KIT_DATABASE_PASSWORD'] %>
