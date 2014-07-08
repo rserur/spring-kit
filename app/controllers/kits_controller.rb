@@ -3,7 +3,7 @@ class KitsController < ApplicationController
 
   def index
     if current_user.role == 'practitioner'
-      @kits = Kit.where("practitioner_id = ?", current_user.id)
+      @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
 
       if @kits.empty?
         flash[:notice] = "No clients found."

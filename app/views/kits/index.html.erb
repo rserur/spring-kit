@@ -1,10 +1,10 @@
 <h1>Kits</h1>
 
 <ul>
-<% if @kits == nil %>
+<% if @kits != nil %>
   <% @kits.each do |kit| %>
 
-    <li><a href="<%= kit_path(kit) %>"><%= kit.client.id %> - <%= kit.practitioner.id %></a></li>
+    <li><a href="<%= kit_path(kit) %>"><%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %></li>
 
   <% end %>
 <% end %>
