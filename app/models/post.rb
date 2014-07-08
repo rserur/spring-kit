@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :kits
 
-  has_one :client_id, through: :kits
-  has_one :practitioner_id, through: :kits
+  belongs_to :recipient, class_name: 'User'
+  belongs_to :sender, class_name: 'User'
 end

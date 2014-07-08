@@ -15,11 +15,11 @@ class PostsController < ApplicationController
       @post.sender_id = current_user.id
       @post.recipient_id = @kit.practitioner_id
     else
-      @post.sender_id = @kit.practitioner_id
-      @post.recipient_id = current_user.id
+      @post.sender_id = current_user.id
+      @post.recipient_id = @kit.client_id
     end
 
-    @post.kit = @kit
+    @post.kit_id = @kit.id
 
     if @post.save
       redirect_to @kit, notice: 'Message sent.'

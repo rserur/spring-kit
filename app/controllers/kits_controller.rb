@@ -17,7 +17,7 @@ class KitsController < ApplicationController
   def show
     @kit = Kit.find(params[:id])
     @post = Post.new
-    @posts = @kit.posts
+    @posts = @kit.posts.includes(:sender, :recipient)
   end
 
   def new
