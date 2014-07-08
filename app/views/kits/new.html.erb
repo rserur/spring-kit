@@ -1,0 +1,10 @@
+<h2>Create Kit</h2>
+
+<%= simple_form_for @kit do |f| %>
+
+<%= f.association :practitioner, label_method: :first_name, value_method: :id, include_blank: false %>
+<%= f.association :client, label_method: :first_name, value_method: :id, include_blank: false %>
+<%= f.submit %>
+
+
+<% end %>

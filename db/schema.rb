@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140708140916) do
     t.datetime "reset_password_sent_at"
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
-    t.integer  "clinic_id",                           null: false
+    t.integer  "organization_id",                     null: false
     t.string   "role",                                null: false
     t.text     "notes"
     t.datetime "remember_created_at"

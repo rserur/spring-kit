@@ -1,0 +1,8 @@
+<ul>
+  <%= @kits.each do |kit| %>
+
+    <li><%= kit.client.id %></li>
+    <li><%= kit.practitioner.id %></li>
+
+  <% end %>
+</ul>
