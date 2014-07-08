@@ -14,14 +14,16 @@
 
 # Ignore all logfiles and tempfiles.
 
+/log/*.log
+/tmp
+/coverage
+
 *.rbc
 capybara-*.html
 .rspec
 /log
-/tmp
 /db/*.sqlite3
 /public/system
-/coverage/
 /spec/tmp
 **.orig
 rerun.txt
