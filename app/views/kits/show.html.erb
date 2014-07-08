@@ -1,3 +1,5 @@
-Kit ID: <%= @kit.id %>
-Practitioner ID: <%= @kit.practitioner_id %>
-Client ID: <%= @kit.client_id %>
+<h2> Kit <%= @kit.id %> </h2>
+
+<p>Practitioner ID: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %> (ID: <%= @kit.practitioner_id %>)</p>
+
+<p>Client ID: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %> (ID: <%= @kit.client_id %>)</p>

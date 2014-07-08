@@ -12,4 +12,6 @@ class ApplicationController < ActionController::Base
       :organization_id, :role, :notes) }
   end
 
+  before_action :authenticate_user!
+
 end

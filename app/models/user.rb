@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   has_many :kits, inverse_of: 'practitioner'
   has_one :kit, inverse_of: 'client'
 
+  def practitioner?
+    role == 'practitioner'
+  end
 end

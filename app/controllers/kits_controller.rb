@@ -1,4 +1,6 @@
 class KitsController < ApplicationController
+  before_action :authorize_user, only: [:new, :create]
+
   def index
     @kits = Kit.limit(50)
   end
@@ -25,5 +27,11 @@ class KitsController < ApplicationController
 
   def kit_params
     params.require(:kit).permit(:client_id, :practitioner_id)
+  end
+
+  def authorize_user
+    unless user_signed_in? and current_user.practitioner?
+      raise ActionController:RoutingError.new('Not Found')
+    end
   end
 end
