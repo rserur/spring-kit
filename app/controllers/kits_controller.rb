@@ -2,7 +2,16 @@ class KitsController < ApplicationController
   before_action :authorize_user, only: [:new, :create]
 
   def index
-    @kits = Kit.limit(50)
+    if current_user.role == 'practitioner'
+      @kits = Kit.where("practitioner_id = ?", current_user.id)
+
+      if @kits.empty?
+        flash[:notice] = "No clients found."
+      end
+    else
+      @kit = Kit.find_or_create_by(client_id: current_user.id, practitioner_id: 1)
+      redirect_to kit_path(@kit.id)
+    end
   end
 
   def show

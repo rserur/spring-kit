@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root "kits#index"
+
   devise_for :users
 
   resources :kits

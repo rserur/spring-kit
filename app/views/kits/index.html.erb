@@ -1,8 +1,11 @@
-<ul>
-  <%= @kits.each do |kit| %>
+<h1>Kits</h1>
 
-    <li><%= kit.client.id %></li>
-    <li><%= kit.practitioner.id %></li>
+<ul>
+<% if @kits == nil %>
+  <% @kits.each do |kit| %>
+
+    <li><a href="<%= kit_path(kit) %>"><%= kit.client.id %> - <%= kit.practitioner.id %></a></li>
 
   <% end %>
+<% end %>
 </ul>

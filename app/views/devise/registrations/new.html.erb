@@ -10,7 +10,7 @@
     <%= f.association :organization, required: true %>
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
-    <%= f.hidden_field :role, value: "client" %>
+    <%= f.input :role, collection: ["client", "practitioner"] %>
   </div>
 
   <div class="form-actions">

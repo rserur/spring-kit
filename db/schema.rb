@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20140708140916) do
   end
 
   create_table "kits", force: true do |t|
-    t.string   "client_id",       null: false
-    t.string   "practitioner_id", null: false
+    t.integer  "client_id",       null: false
+    t.integer  "practitioner_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
