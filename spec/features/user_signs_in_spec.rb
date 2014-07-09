@@ -23,7 +23,7 @@ feature "user signs in", %q{
     click_on "Sign in"
 
     expect(page).to have_content "Signed in successfully."
-    expect(page).to have_content "Kit #{client.id}"
+    expect(page).to have_content "#{client.first_name}'s SpringKit"
   end
 
   scenario "practitioner signs in with valid credentials" do
