@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :kits, inverse_of: 'practitioner'
   has_one :kit, inverse_of: 'client'
+  has_many :posts, through: :kit
 
   def practitioner?
     role == 'practitioner'
