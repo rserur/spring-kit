@@ -6,7 +6,7 @@ class KitsController < ApplicationController
       @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
 
       if @kits.empty?
-        flash[:notice] = "No clients found."
+        flash[:alert] = "No clients found."
       end
     else
       @kit = Kit.find_or_create_by(client_id: current_user.id, practitioner_id: 1)
