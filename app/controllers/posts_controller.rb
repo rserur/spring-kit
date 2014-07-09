@@ -22,9 +22,9 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
-      redirect_to @kit, notice: 'Message sent.'
+      redirect_to @kit, notice: 'Post added to kit.'
     else
-      render :new, notice: 'Message could not be sent.'
+      render :new, notice: 'Post could not be added to kit.'
     end
   end
 
