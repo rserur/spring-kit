@@ -10,9 +10,7 @@ feature "user signs in", %q{
   #
   # * I must be able to sign in as a client.
   # * I must be able to sign in as a practitioner.
-  # * I must receive an email invitation.
-  # * I must receive a temporary password to officially sign up with.
-  # * I must change my password once registration is finished.
+  # * I must be denied access if I do not enter valid credentials.
 
   scenario "client signs in with valid credentials" do
     practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
