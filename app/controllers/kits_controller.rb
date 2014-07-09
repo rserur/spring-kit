@@ -26,6 +26,7 @@ class KitsController < ApplicationController
 
   def create
     @kit = Kit.new(kit_params)
+    @kit.practitioner_id = current_user.id
 
     if @kit.save
       redirect_to @kit, notice: 'Kit successfully created.'
@@ -37,7 +38,7 @@ class KitsController < ApplicationController
   private
 
   def kit_params
-    params.require(:kit).permit(:client_id, :practitioner_id)
+    params.require(:kit).permit(:client_id)
   end
 
   def authorize_user

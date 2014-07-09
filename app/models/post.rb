@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to :kits, inverse_of: :posts
+  belongs_to :kit, inverse_of: :posts
   belongs_to :recipient, class_name: 'User'
   belongs_to :sender, class_name: 'User'
 
