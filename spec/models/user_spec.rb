@@ -5,7 +5,7 @@ RSpec.describe User, :type => :model do
     it { should have_many(:posts).dependent(:destroy)}
 
     describe "#password" do
-      it { should have_valid(:password).when("abc123", "asd^2jk@%#&!!") }
+      it { should have_valid(:password).when("abcd1234", "asd^2jk@%#&!!") }
       it { should_not have_valid(:password).when("abc123", nil, "") }
     end
 
@@ -15,8 +15,15 @@ RSpec.describe User, :type => :model do
       it { should_not have_valid(:password_confirmation).when("asdfg") }
     end
 
-    describe "#email" do
-      subject { FactoryGirl.create(:user) }
+    describe "#practitioner_email" do
+      subject { FactoryGirl.create(:user, :practitioner) }
+      it { should have_valid(:email).when("example@example.com", "me@sample.com") }
+      it { should_not have_valid(:email).when("asf", "example.com", "me@", nil, "") }
+      it { should validate_uniqueness_of(:email) }
+    end
+
+    describe "#client_email" do
+      subject { FactoryGirl.create(:user, :client) }
       it { should have_valid(:email).when("example@example.com", "me@sample.com") }
       it { should_not have_valid(:email).when("asf", "example.com", "me@", nil, "") }
       it { should validate_uniqueness_of(:email) }
