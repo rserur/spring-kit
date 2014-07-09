@@ -25,7 +25,7 @@ feature "user signs up", %q{
     fill_in "Password confirmation", with: "abcd1234"
     select "practitioner", from: 'user[role]'
     click_on "Sign up"
-    save_and_open_page
+
     expect(page).to have_content "You have signed up successfully."
   end
 
