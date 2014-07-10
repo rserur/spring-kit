@@ -1,29 +1,22 @@
-<h2> <%= @kit.client.first_name %>'s SpringKit (<%= @kit.id %>) </h2>
+<h2> <%= @kit.client.first_name %>'s SpringKit</h2>
 
 <p>Practitioner ID: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %> (ID: <%= @kit.practitioner_id %>)</p>
 
 <p>Client ID: <%= @kit.client.first_name %> <%= @kit.client.last_name %> (ID: <%= @kit.client_id %>)</p>
 
-
-<h3>Add Post</h3>
-<%= simple_form_for [@kit, @post] do |f| %>
-
-  <%= f.input :title %>
-  <%= f.input :body %>
-
-  <%= f.button :submit %>
-
-<% end %>
-
 <h3>Posts</h3>
 
 <% if @posts %>
   <% @posts.each do |post| %>
-    <p>
-      Sender: <%= post.sender.first_name %>
+    <div class="post">
+      <pSender: <%= post.sender.first_name %>
       Recipient: <%= post.recipient.first_name %>
-      Title: <%= post.title %>
-      Message: <%= post.body %>
-    </p>
+      <p>
+      <strong>Title:</strong> <%= post.title %>
+      </p>
+      <p>
+        <strong>Message:</strong> <%= post.body %>
+      </p>
+    </div>
   <% end %>
 <% end %>
