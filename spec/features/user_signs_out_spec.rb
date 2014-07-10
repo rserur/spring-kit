@@ -7,7 +7,7 @@ feature "user signs out", %q{
 } do
 
   scenario "practitioner signs out" do
-    practitioner = FactoryGirl.create(:user, :practitioner)
+    practitioner = FactoryGirl.create(:practitioner)
     sign_in_as(practitioner)
 
     click_on "Sign Out"
@@ -16,9 +16,11 @@ feature "user signs out", %q{
   end
 
   scenario "client signs out" do
-    practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
-    client = FactoryGirl.create(:user, :client)
-    sign_in_as(client)
+    # practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
+    # client = FactoryGirl.create(:user, :client)
+    kit = FactoryGirl.create(:kit)
+
+    sign_in_as(kit.client)
 
     click_on "Sign Out"
 

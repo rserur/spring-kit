@@ -16,14 +16,14 @@ RSpec.describe User, :type => :model do
     end
 
     describe "#practitioner_email" do
-      subject { FactoryGirl.create(:user, :practitioner) }
+      subject { FactoryGirl.create(:practitioner) }
       it { should have_valid(:email).when("example@example.com", "me@sample.com") }
       it { should_not have_valid(:email).when("asf", "example.com", "me@", nil, "") }
       it { should validate_uniqueness_of(:email) }
     end
 
     describe "#client_email" do
-      subject { FactoryGirl.create(:user, :client) }
+      subject { FactoryGirl.create(:client) }
       it { should have_valid(:email).when("example@example.com", "me@sample.com") }
       it { should_not have_valid(:email).when("asf", "example.com", "me@", nil, "") }
       it { should validate_uniqueness_of(:email) }

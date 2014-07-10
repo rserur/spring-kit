@@ -3,14 +3,14 @@ class KitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.role == 'practitioner'
+    if current_user.practitioner?
       @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
 
       if @kits.empty?
         flash[:alert] = "No clients found."
       end
     else
-      @kit = Kit.find_or_create_by(client_id: current_user.id, practitioner_id: 1)
+      @kit = Kit.find_or_create_by(client_id: current_user.id)
       redirect_to kit_path(@kit.id)
     end
   end

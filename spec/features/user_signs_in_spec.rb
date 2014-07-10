@@ -13,21 +13,22 @@ feature "user signs in", %q{
   # * I must be denied access if I do not enter valid credentials.
 
   scenario "client signs in with valid credentials" do
-    practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
-    client = FactoryGirl.create(:user, :client, id: 2)
+    # practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
+    # client = FactoryGirl.create(:user, :client, id: 2)
+    kit = FactoryGirl.create(:kit)
 
     visit new_user_session_path
 
-    fill_in "Email", with: client.email
-    fill_in "Password", with: client.password
+    fill_in "Email", with: kit.client.email
+    fill_in "Password", with: kit.client.password
     click_on "Sign in"
 
     expect(page).to have_content "Signed in successfully."
-    expect(page).to have_content "#{client.first_name}'s SpringKit"
+    expect(page).to have_content "#{kit.client.first_name}'s SpringKit"
   end
 
   scenario "practitioner signs in with valid credentials" do
-    practitioner = FactoryGirl.create(:user, :practitioner)
+    practitioner = FactoryGirl.create(:practitioner)
 
     visit new_user_session_path
 

@@ -3,7 +3,7 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence.capitalize }
     body { Faker::Lorem.paragraph }
 
-    association :kit, factory: :kit
+    association :kit
 
     trait :to_practitioner do
       sender_id { kit.client_id }
