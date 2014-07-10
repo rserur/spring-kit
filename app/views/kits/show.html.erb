@@ -1,0 +1,17 @@
+<h2> <%= @kit.client.first_name %>'s SpringKit</h2>
+<em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
+
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <% if post.sender_id == post.kit.client_id %>
+      <div class="post from-client">
+    <% else %>
+      <div class="post from-practitioner">
+    <% end %>
+        <h4><%= post.title %></h4>
+        <p><%= post.body %></p>
+        <em>- <%= post.sender.first_name %></em>
+      </p>
+    </div>
+  <% end %>
+<% end %>

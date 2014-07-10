@@ -1,0 +1,9 @@
+<h2>Create Kit</h2>
+
+<%= simple_form_for @kit do |f| %>
+
+<%= f.association :client, label_method: :first_name, value_method: :id, include_blank: false, as: :collection_select, collection: User.where(organization_id: current_user.organization_id, role: 'client') %>
+<%= f.submit %>
+
+
+<% end %>

@@ -57,8 +57,7 @@ end
 
 gem 'simple_form'
 gem 'devise'
-
-group :assets do
-  gem 'compass-rails'
-  gem 'susy'
-end
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+gem 'font-awesome-rails'

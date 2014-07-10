@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708140916) do
+ActiveRecord::Schema.define(version: 20140709150357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,27 +25,34 @@ ActiveRecord::Schema.define(version: 20140708140916) do
     t.datetime "updated_at"
   end
 
+  add_index "attachments", ["post_id"], name: "index_attachments_on_post_id", unique: true, using: :btree
+
   create_table "kits", force: true do |t|
-    t.string   "client_id",       null: false
-    t.string   "practitioner_id", null: false
+    t.integer  "client_id",       null: false
+    t.integer  "practitioner_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "kits", ["client_id"], name: "index_kits_on_client_id", unique: true, using: :btree
 
   create_table "organizations", force: true do |t|
     t.string "name",        null: false
     t.text   "description"
   end
 
+  add_index "organizations", ["name"], name: "index_organizations_on_name", unique: true, using: :btree
+
   create_table "posts", force: true do |t|
     t.integer  "recipient_id",  null: false
     t.integer  "sender_id",     null: false
-    t.integer  "tag_id",        null: false
+    t.integer  "tag_id"
     t.string   "title"
     t.string   "body",          null: false
     t.integer  "attachment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "kit_id",        null: false
   end
 
   create_table "users", force: true do |t|
@@ -55,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140708140916) do
     t.datetime "reset_password_sent_at"
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
-    t.integer  "clinic_id",                           null: false
+    t.integer  "organization_id",                     null: false
     t.string   "role",                                null: false
     t.text     "notes"
     t.datetime "remember_created_at"

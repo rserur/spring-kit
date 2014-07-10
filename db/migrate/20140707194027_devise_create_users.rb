@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # Custom
       t.string :first_name, null: false
       t.string :last_name, null: false
-      t.integer :clinic_id, null: false
+      t.integer :organization_id, null: false
       t.string :role, null: false
       t.text :notes
 

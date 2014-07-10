@@ -7,8 +7,67 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <div class="main">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
-<%= yield %>
+      <aside>
+        <h1 class="logo">
+          <a href="/">SpringKit</a>
+        </h1>
 
+        <div class="tags">
+          <h2>Tags</h2>
+          <ul>
+            <li><a href="/">Tag 1</a></li>
+            <li><a href="/">Tag 2</a></li>
+            <li><a href="/">Tag 3</a></li>
+            <li><a href="/">Tag 4</a></li>
+            <li><a href="/">Tag 5</a></li>
+          </ul>
+        </div>
+        <div class="search">
+          <h2>Search</h2>
+          <input type="search">
+          <input type="submit">
+        </div>
+        <% if current_user && current_page?(kit_path(current_user)) %>
+          <div class="add">
+            <h2>Add Post</h2>
+
+              <%= simple_form_for [@kit, @post] do |f| %>
+
+              <%= f.input :title %>
+              <%= f.input :body %>
+
+              <%= f.button :submit %>
+
+              <% end %>
+          </div>
+        <% end %>
+        <% if user_signed_in? && !current_user.practitioner? %>
+          <em>Practitioner: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %></em>
+        <% end %>
+      </aside>
+
+      <article>
+        <%= yield %>
+      </article>
+    </div>
+    <nav>
+
+        <ul>
+          <% if user_signed_in? %>
+            <li><a href="<%= edit_user_registration_path %>"><i class="fa fa-user"></i></a></li>
+            <li><a href="#">Signed in as <%= current_user.email %></a></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to 'Register', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <% end %>
+        </ul>
+    </nav>
+  </div>
 </body>
 </html>

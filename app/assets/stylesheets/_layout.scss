@@ -1,0 +1,125 @@
+.container {
+  @include outer-container();
+
+}
+
+.main {
+  @include span-columns(12);
+  margin-top: $nav-height;
+}
+
+article {
+  @include media($mobile) {
+    @include span-columns(12);
+  }
+
+  h2 {
+    color: $tertiary;
+  }
+
+  @include span-columns(8);
+  float: left;
+  padding-right: 4rem;
+
+  .post {
+    height: 10rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    background-color: tint($primary,95);
+
+    &:hover {
+      @include transition (all 0.2s ease-in-out);
+      color: lighten($base-font-color,20);
+      background-color: #fff;
+    }
+  }
+
+  h4 {
+    color: $primary;
+  }
+
+  .from-client {
+    text-align: left;
+  }
+
+  .from-practitioner {
+    text-align: right;
+  }
+}
+
+aside {
+  @include media($mobile) {
+    @include span-columns(12);
+    padding: 2rem;
+  }
+
+  @include span-columns(4);
+
+  a {
+    color: $light;
+  }
+
+  float: right;
+  background-color: tint($primary,20);
+  padding: 2.5rem;
+
+  h1, h2 {
+
+    &.logo {
+      font-family: $serif;
+      margin-top: 0;
+
+      a {
+        color: shade($sub-primary,50);
+      }
+
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .tags, .search, .add {
+    border-top: 1px solid $sub-primary;
+    min-height: 10rem;
+    padding: 1.5rem 0;
+  }
+
+}
+
+nav {
+  @include fill-parent;
+  @include box(horizontal, start, stretch);
+  @include linear-gradient(tint($primary, 85), tint($primary, 95));
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
+  height: $nav-height;
+
+  ul {
+    margin: 0 auto;
+    padding: 0;
+
+    li {
+      float: left;
+      display: block;
+      text-align: right;
+      line-height: $nav-height;
+      padding-right: 2em;
+
+      a {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: $primary;
+      }
+    }
+  }
+
+}
+
+nav a {
+  color: $light;
+}
