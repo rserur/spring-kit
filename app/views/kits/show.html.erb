@@ -9,6 +9,9 @@
       <div class="post from-practitioner">
     <% end %>
         <h4><%= post.title %></h4>
+        <% if post.media %>
+          <%= image_tag post.media.url %>
+        <% end %>
         <p><%= post.body %></p>
         <em>- <%= post.sender.first_name %></em>
       </p>

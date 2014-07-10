@@ -36,10 +36,12 @@
           <div class="add">
             <h2>Add Post</h2>
 
-              <%= simple_form_for [@kit, @post] do |f| %>
+              <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
 
               <%= f.input :title %>
               <%= f.input :body %>
+
+              <%= f.file_field :media %>
 
               <%= f.button :submit %>
 

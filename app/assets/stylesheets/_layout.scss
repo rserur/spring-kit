@@ -22,7 +22,7 @@ article {
   padding-right: 4rem;
 
   .post {
-    height: 10rem;
+    min-height: 10rem;
     padding: 1rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -37,6 +37,7 @@ article {
       color: lighten($base-font-color,20);
       background-color: #fff;
     }
+
   }
 
   h4 {
