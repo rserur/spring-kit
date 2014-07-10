@@ -32,19 +32,20 @@
           <input type="search">
           <input type="submit">
         </div>
-        <div class="add">
-          <h2>Add Post</h2>
-          <% if current_user %>
-            <%= simple_form_for [@kit, @post] do |f| %>
+        <% if current_user && !current_page?( action: 'index') %>
+          <div class="add">
+            <h2>Add Post</h2>
 
-            <%= f.input :title %>
-            <%= f.input :body %>
+              <%= simple_form_for [@kit, @post] do |f| %>
 
-            <%= f.button :submit %>
+              <%= f.input :title %>
+              <%= f.input :body %>
 
-            <% end %>
-          <% end %>
-        </div>
+              <%= f.button :submit %>
+
+              <% end %>
+          </div>
+        <% end %>
       </aside>
 
       <article>
