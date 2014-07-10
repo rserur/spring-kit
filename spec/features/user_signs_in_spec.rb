@@ -14,7 +14,7 @@ feature "user signs in", %q{
 
   scenario "client signs in with valid credentials" do
     practitioner = FactoryGirl.create(:user, :practitioner, id: 1)
-    client = FactoryGirl.create(:user, :client)
+    client = FactoryGirl.create(:user, :client, id: 2)
 
     visit new_user_session_path
 
