@@ -28,6 +28,10 @@ article {
     margin-bottom: 2rem;
     background-color: tint($primary,95);
 
+    -webkit-box-shadow: 10px 10px 0px 0px tint($primary, 70);
+    -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
+    box-shadow:         10px 10px 0px 0px tint($primary, 70);
+
     &:hover {
       @include transition (all 0.2s ease-in-out);
       color: lighten($base-font-color,20);
@@ -55,6 +59,10 @@ aside {
   }
 
   @include span-columns(4);
+
+  -webkit-box-shadow: 10px 10px 0px 0px $sub-primary;
+  -moz-box-shadow:    10px 10px 0px 0px $sub-primary;
+  box-shadow:         10px 10px 0px 0px $sub-primary;
 
   a {
     color: $light;
