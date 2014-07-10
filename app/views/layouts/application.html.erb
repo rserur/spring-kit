@@ -46,6 +46,9 @@
               <% end %>
           </div>
         <% end %>
+        <% if current_user.role == 'client' %>
+          <em>Practitioner: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %></em>
+        <% end %>
       </aside>
 
       <article>
@@ -53,8 +56,10 @@
       </article>
     </div>
     <nav>
+
         <ul>
           <% if user_signed_in? %>
+            <li><%= fa_icon "user" %>
             <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
             <li><a href="#">Signed in as <%= current_user.email %></a></li>
             <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>

@@ -1,21 +1,16 @@
 <h2> <%= @kit.client.first_name %>'s SpringKit</h2>
-
-<p>Practitioner ID: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %> (ID: <%= @kit.practitioner_id %>)</p>
-
-<p>Client ID: <%= @kit.client.first_name %> <%= @kit.client.last_name %> (ID: <%= @kit.client_id %>)</p>
-
-<h3>Posts</h3>
+<em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
 
 <% if @posts %>
   <% @posts.each do |post| %>
-    <div class="post">
-      <pSender: <%= post.sender.first_name %>
-      Recipient: <%= post.recipient.first_name %>
-      <p>
-      <strong>Title:</strong> <%= post.title %>
-      </p>
-      <p>
-        <strong>Message:</strong> <%= post.body %>
+    <% if post.sender_id == post.kit.client_id %>
+      <div class="post from-client">
+    <% else %>
+      <div class="post from-practitioner">
+    <% end %>
+        <h4><%= post.title %></h4>
+        <p><%= post.body %></p>
+        <em>- <%= post.sender.first_name %></em>
       </p>
     </div>
   <% end %>

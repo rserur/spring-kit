@@ -14,11 +14,12 @@ $header-line-height: $base-font-size * 1.25;
 $base-border-radius: em(3);
 
 // Colors
-$primary: lighten(#273A42,20);
-$sub-primary: #8ACCE8;
-$secondary: #FF5600;
-$tertiary: #8A1700;
-$light: #FCFFF8;
+$primary: #4FB99F;
+$sub-primary: #068587;
+$secondary: #112F41;
+$tertiary: #ED553B;
+$sub-tertiary: #F2B134;
+$light: #fff;
 
 $dark-gray: #333;
 $medium-gray: #999;
@@ -38,7 +39,7 @@ $base-accent-color: $primary;
 // Link Colors
 $base-link-color: $base-accent-color;
 $hover-link-color: darken($base-accent-color, 15);
-$base-button-color: $base-link-color;
+$base-button-color: shade($sub-primary, 20);
 $hover-button-color: $hover-link-color;
 
 // Border color
