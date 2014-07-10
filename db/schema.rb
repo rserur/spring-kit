@@ -11,21 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709150357) do
+ActiveRecord::Schema.define(version: 20140710211935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attachments", force: true do |t|
-    t.string   "type",       null: false
-    t.string   "name",       null: false
-    t.string   "url",        null: false
-    t.integer  "post_id",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "attachments", ["post_id"], name: "index_attachments_on_post_id", unique: true, using: :btree
 
   create_table "kits", force: true do |t|
     t.integer  "client_id",       null: false
@@ -44,15 +33,19 @@ ActiveRecord::Schema.define(version: 20140709150357) do
   add_index "organizations", ["name"], name: "index_organizations_on_name", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
-    t.integer  "recipient_id",  null: false
-    t.integer  "sender_id",     null: false
+    t.integer  "recipient_id",       null: false
+    t.integer  "sender_id",          null: false
     t.integer  "tag_id"
     t.string   "title"
-    t.string   "body",          null: false
+    t.string   "body",               null: false
     t.integer  "attachment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "kit_id",        null: false
+    t.integer  "kit_id",             null: false
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
   end
 
   create_table "users", force: true do |t|
