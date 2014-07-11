@@ -11,7 +11,7 @@
         <h4><%= post.title %></h4>
         <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
             <%= image_tag post.media.url, class: "image" %>
-        <% else %>
+        <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
           <a href="<%= post.media.url %>">
           <%= image_tag post.media.url(:doc) %>
           Download</a>

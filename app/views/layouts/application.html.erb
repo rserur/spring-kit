@@ -32,7 +32,7 @@
           <input type="search">
           <input type="submit">
         </div>
-        <% if current_user && current_page?(kit_path) %>
+        <% if current_user && current_page?(kit_path(current_user)) %>
           <div class="add">
             <h2>Add Post</h2>
 
@@ -40,6 +40,7 @@
 
               <%= f.input :title %>
               <%= f.input :body %>
+              <%= f.input :message, label: 'Post as Message?' %>
 
               <%= f.file_field :media %>
 
