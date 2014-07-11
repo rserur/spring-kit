@@ -1,6 +1,22 @@
 <h2> <%= @kit.client.first_name %>'s SpringKit</h2>
 <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
 
+<div class="add">
+            <h2>Add Post</h2>
+
+              <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
+
+              <%= f.input :title %>
+              <%= f.input :body %>
+              <%= f.input :message, label: 'Post as Message?' %>
+
+              <%= f.file_field :media %>
+
+              <%= f.button :submit %>
+
+              <% end %>
+          </div>
+
 <% if @posts %>
   <% @posts.each do |post| %>
     <% if post.sender_id == post.kit.client_id %>
