@@ -9,4 +9,12 @@ class Kit < ActiveRecord::Base
   validates :client_id, presence: true
   validates :client_id, uniqueness: { scope: :practitioner_id }
   validates :practitioner_id, presence: true
+
+  def last_updated
+    if !self.posts.empty?
+      return self.posts.last.created_at
+    else
+      return "Zero posts in kit."
+    end
+  end
 end
