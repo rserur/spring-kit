@@ -4,7 +4,9 @@ class Post < ActiveRecord::Base
   belongs_to :sender, class_name: 'User'
   has_many :media
 
-  has_attached_file :media, styles: { medium: "300x300>", thumb: "100x100>"}
+  has_attached_file :media, styles: { medium: "300x300>",
+    thumb: "100x100>",
+    doc: ["", :png] }
   validates_attachment_content_type :media, content_type: ["image/gif", "image/jpg", "image/jpeg", "image/png", "application/pdf",
     "application/msword", "text/plain"]
 
