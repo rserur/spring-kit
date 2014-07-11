@@ -9,8 +9,11 @@
       <div class="post from-practitioner">
     <% end %>
         <h4><%= post.title %></h4>
-        <% if post.media %>
-          <%= image_tag post.media.url %>
+        <% if post.media && post.media.content_type == "image/jpeg" %>
+            <%= image_tag post.media.url %>
+            <%= post.media.content_type %>
+        <% else %>
+          <a href="<%= post.media.url %>">Download</a>
         <% end %>
         <p><%= post.body %></p>
         <em>- <%= post.sender.first_name %></em>
