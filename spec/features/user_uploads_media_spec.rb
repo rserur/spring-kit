@@ -1,37 +1,51 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# feature "user signs up", %q{
-#   As a client or clinician, counselor, or therapist (CCT)
-#   I want to drop in media like images, videos, PDFs, text files, or word documents
-#   so I can always have these resources available in my kit
-# } do
+feature "user signs up", %q{
+  As a client or clinician, counselor, or therapist (CCT)
+  I want to drop in media like images, videos, PDFs, text files, or word documents
+  so I can always have these resources available in my kit
+} do
 
-#   # Acceptance Criteria
+  # Acceptance Criteria
 
-#   # * I must post these by attaching them to a message.
-#   # * I must be presented with an error if the file type is not acceptable.
+  # * I must be allowed to attach images to posts.
+  # * I must be allowed to attach documents to posts.
 
-#   scenario "user uploads image" do
+  scenario "practitioner uploads GIF" do
 
-#     kit = FactoryGirl.create(:kit)
+    kit = FactoryGirl.create(:kit)
 
-#     sign_in_as(kit.practitioner_id)
+    sign_in_as(kit.practitioner)
 
-#     visit kit_path(kit.client_id)
+    visit kit_path(kit)
 
-#     fill_in "Title", with: "Image"
-#     fill_in "Body", with: "This is an image."
+    fill_in "Title", with: "Image"
+    fill_in "Body", with: "This is an image."
+    attach_file('post[media]', 'spec/fixtures/file.gif')
 
-#     click_on "Sign up"
+    click_on "Create Post"
 
-#     expect(page).to have_content "You have signed up successfully."
-#   end
+    expect(page).to have_css("img")
+    expect(page).to have_content "Post added to kit."
+  end
 
-#   scenario "user signs up without required information" do
-#     visit new_user_registration_path
+  scenario "client uploads PDF" do
 
-#     click_on "Sign up"
+    kit = FactoryGirl.create(:kit)
 
-#     expect(page).to have_content "can't be blank"
-#   end
-# end
+    sign_in_as(kit.client)
+
+    visit kit_path(kit)
+
+    fill_in "Title", with: "PDF"
+    fill_in "Body", with: "This is an PDF."
+    attach_file('post[media]', 'spec/fixtures/file.pdf')
+
+    click_on "Create Post"
+
+    expect(page).to have_css("img")
+    expect(page).to have_content "Post added to kit."
+
+  end
+
+end

@@ -22,7 +22,13 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
-      redirect_to @kit, notice: 'Post added to kit.'
+      if @post.message && !current_user.practitioner?
+        redirect_to @kit, notice: 'Post sent to practitioner as message and added to kit.'
+      elsif @post.message && current_user.practitioner?
+        redirect_to @kit, notice: 'Post sent to client as message and added to kit.'
+      else
+        redirect_to @kit, notice: 'Post added to kit.'
+      end
     else
       render :new, notice: 'Post could not be added to kit.'
     end
