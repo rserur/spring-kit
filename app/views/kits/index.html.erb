@@ -10,9 +10,6 @@
           <strong>Last Updated:</strong> <%= kit.last_updated %>
         </li>
 
-
-
-
       <% end %>
     <% end %>
   </ul>
@@ -30,7 +27,7 @@
           <%= image_tag message.media.url(:doc) %>
           Download</a>
       <% end %>
-        <p><%= message.body %></p>
+        <%= message.body %>
         <em>- <%= message.sender.first_name %></em>
         <%= button_to 'Delete', kit_post_path(message.kit.id, message.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>

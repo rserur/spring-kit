@@ -59,7 +59,7 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "A question"
     fill_in "Body", with: "Do we have an appointment on Monday?"
-    check "Post as Message?"
+    check "Post and Send as Message?"
 
     click_on "Create Post"
 
@@ -78,13 +78,27 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "Just a reminder"
     fill_in "Body", with: "Please bring the worksheet if you can."
-    check "Post as Message?"
+    check "Post and Send as Message?"
 
     click_on "Create Post"
 
     expect(page).to have_content "reminder"
     expect(page).to have_content "worksheet"
     expect(page).to have_content "Post sent to client as message and added to kit."
+  end
+
+  scenario "Post invalid message" do
+
+    kit = FactoryGirl.create(:kit)
+
+    sign_in_as(kit.practitioner)
+
+    visit kit_path(kit)
+
+    click_on "Create Post"
+
+    expect(page).to have_content "Post could not be added to kit."
+
   end
 
 end

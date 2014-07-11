@@ -22,16 +22,17 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
-      if @post.message && !current_user.practitioner?
-        redirect_to @kit, notice: 'Post sent to practitioner as message and added to kit.'
-      elsif @post.message && current_user.practitioner?
-        redirect_to @kit, notice: 'Post sent to client as message and added to kit.'
+      if @post.message
+        flash[:notice] = "Post sent to #{@post.recipient.role} as message and added to kit."
       else
-        redirect_to @kit, notice: 'Post added to kit.'
+        flash[:notice] = 'Post added to kit.'
       end
+
     else
-      render :new, notice: 'Post could not be added to kit.'
+      flash[:notice] = 'Post could not be added to kit.'
     end
+
+    redirect_to @kit
   end
 
   def destroy

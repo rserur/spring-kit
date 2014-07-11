@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711131311) do
+ActiveRecord::Schema.define(version: 20140711211048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20140711131311) do
     t.integer  "sender_id",                          null: false
     t.integer  "tag_id"
     t.string   "title"
-    t.string   "body",                               null: false
     t.integer  "attachment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140711131311) do
     t.integer  "media_file_size"
     t.datetime "media_updated_at"
     t.boolean  "message",            default: false
+    t.text     "body"
   end
 
   create_table "users", force: true do |t|

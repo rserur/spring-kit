@@ -18,8 +18,8 @@
     <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
 
     <%= f.input :title %>
-    <%= f.input :body %>
-    <%= f.input :message, label: 'Post as Message?' %>
+    <%= f.input :body, rows: 5 %>
+    <%= f.input :message, label: 'Post and Send as Message?' %>
 
     <%= f.file_field :media %>
 
@@ -43,7 +43,7 @@
           <%= image_tag post.media.url(:doc) %>
           Download</a>
         <% end %>
-        <p><%= post.body %></p>
+        <%= sanitize post.body %>
         <em>- <%= post.sender.first_name %></em>
         <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>
