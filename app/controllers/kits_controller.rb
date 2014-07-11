@@ -18,7 +18,7 @@ class KitsController < ApplicationController
   def show
     @kit = Kit.find(params[:id])
     @post = Post.new
-    @posts = @kit.posts
+    @posts = @kit.posts.order(created_at: :desc)
   end
 
   def new
