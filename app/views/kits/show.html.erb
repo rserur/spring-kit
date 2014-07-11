@@ -11,12 +11,14 @@
         <h4><%= post.title %></h4>
         <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
             <%= image_tag post.media.url %>
-            <%= post.media.content_type %>
         <% else %>
+        <%= image_tag post.media.url(:thumb) %>
           <a href="<%= post.media.url %>">Download</a>
         <% end %>
         <p><%= post.body %></p>
         <em>- <%= post.sender.first_name %></em>
+        <%= link_to 'Delete', kit_post_path(@kit.id, post.id),
+    method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
     </div>
   <% end %>

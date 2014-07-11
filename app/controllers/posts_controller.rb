@@ -30,9 +30,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    kit = @post.kit_id
     @post.destroy
 
-    redirect_to kit_path()
+    redirect_to kit_path(kit)
   end
 
   def post_params
