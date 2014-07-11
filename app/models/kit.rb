@@ -12,9 +12,9 @@ class Kit < ActiveRecord::Base
 
   def last_updated
     if !self.posts.empty?
-      return self.posts.last.created_at
+      return self.posts.last.created_at.to_formatted_s(:long_ordinal)
     else
-      return "Zero posts in kit."
+      return "Never."
     end
   end
 end

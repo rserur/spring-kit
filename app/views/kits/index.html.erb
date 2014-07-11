@@ -1,20 +1,22 @@
 <h2>Kits</h2>
 
-<ul>
+<div class="post">
+  <ul>
+    <% if @kits != nil %>
 
-  <% if @kits != nil %>
+      <% @kits.each do |kit| %>
+        <li class="kit">
+          <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %>
+          <strong>Last Updated:</strong> <%= kit.last_updated %>
+        </li>
 
-    <% @kits.each do |kit| %>
-      <li><a href="<%= kit_path(kit) %>"><%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %></li>
-
-        <%= kit.last_updated %>
 
 
+
+      <% end %>
     <% end %>
-  <% end %>
-
-</ul>
-
+  </ul>
+</div>
 <% if @messages != nil %>
 <h2>Messages</h2>
   <% @messages.each do |message| %>

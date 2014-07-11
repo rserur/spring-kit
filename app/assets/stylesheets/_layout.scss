@@ -5,12 +5,39 @@
 
 .main {
   @include span-columns(12);
-  margin: $nav-height 0;
+  margin-top: $nav-height / 2;
+  margin-bottom: $nav-height;
 }
 
 article {
   @include media($mobile) {
     @include span-columns(12);
+  }
+
+  header {
+    span {
+      @include span-columns(6);
+
+      &#plus {
+        text-align: right;
+        font-size: $base-font-size * 0.95;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #add {
+    -webkit-box-shadow: 10px 10px 0px 0px tint($tertiary, 30);
+    -moz-box-shadow:    10px 10px 0px 0px tint($tertiary, 30);
+    box-shadow:         10px 10px 0px 0px tint($tertiary, 30);
+    border: 1px solid $tertiary;
+    padding: 1rem;
+    margin: 2rem 0;
+    color: shade($tertiary, 70);
+
+    .button {
+      background-color: tint($tertiary, 20);
+    }
   }
 
   h2 {
@@ -47,6 +74,10 @@ article {
       @include fill-parent();
     }
 
+    li.kit {
+      border-bottom: 1px solid tint($primary, 70);
+    }
+
   }
 
   h4 {
@@ -76,10 +107,15 @@ aside {
 
   a {
     color: $light;
+
+    i {
+      padding-right: 0.5em;
+      color: shade($sub-primary, 25);
+    }
   }
 
   float: right;
-  background-color: tint($primary,20);
+  background-color: tint($primary, 20);
   padding: 2.5rem;
 
   h1, h2 {
@@ -99,10 +135,15 @@ aside {
     font-size: 1.5rem;
   }
 
-  .tags, .search, .add {
+  .collections, .search, .add {
     border-top: 1px solid $sub-primary;
     min-height: 10rem;
     padding: 1.5rem 0;
+  }
+
+  .collections li {
+    font-size: $base-font-size * 1.5;
+    font-weight: 700;
   }
 
 }

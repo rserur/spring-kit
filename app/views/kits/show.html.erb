@@ -1,20 +1,32 @@
-<h2> <%= @kit.client.first_name %>'s SpringKit</h2>
+<header>
+  <h2>
+    <span class="title">
+      <%= @kit.client.first_name %>'s SpringKit
+    </span>
+    <span id="plus">
+       <i class="fa fa-plus-circle"></i> Add
+    </span>
+  </h2>
+</header>
+
+
 <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
-<div class="add">
-            <h2>Add Post</h2>
 
-              <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
+<div id="add">
+  <h3>Add Post</h3>
 
-              <%= f.input :title %>
-              <%= f.input :body %>
-              <%= f.input :message, label: 'Post as Message?' %>
+    <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
 
-              <%= f.file_field :media %>
+    <%= f.input :title %>
+    <%= f.input :body %>
+    <%= f.input :message, label: 'Post as Message?' %>
 
-              <%= f.button :submit %>
+    <%= f.file_field :media %>
 
-              <% end %>
-          </div>
+    <%= f.button :submit %>
+
+    <% end %>
+</div>
 
 <% if @posts %>
   <% @posts.each do |post| %>
