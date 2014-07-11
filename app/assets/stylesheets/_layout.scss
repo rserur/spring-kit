@@ -5,7 +5,7 @@
 
 .main {
   @include span-columns(12);
-  margin-top: $nav-height;
+  margin: $nav-height 0;
 }
 
 article {
