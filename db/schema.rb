@@ -33,20 +33,20 @@ ActiveRecord::Schema.define(version: 20140711131311) do
   add_index "organizations", ["name"], name: "index_organizations_on_name", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
-    t.integer  "recipient_id",       null: false
-    t.integer  "sender_id",          null: false
+    t.integer  "recipient_id",                       null: false
+    t.integer  "sender_id",                          null: false
     t.integer  "tag_id"
     t.string   "title"
-    t.string   "body",               null: false
+    t.string   "body",                               null: false
     t.integer  "attachment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "kit_id",             null: false
+    t.integer  "kit_id",                             null: false
     t.string   "media_file_name"
     t.string   "media_content_type"
     t.integer  "media_file_size"
     t.datetime "media_updated_at"
-    t.boolean  "message"
+    t.boolean  "message",            default: false
   end
 
   create_table "users", force: true do |t|

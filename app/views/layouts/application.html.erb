@@ -33,7 +33,7 @@
           <input type="submit">
         </div>
         <% if user_signed_in? && !current_user.practitioner? %>
-          <em>Practitioner: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %></em>
+          <em>Your Practitioner: <%= @kit.practitioner.first_name %> <%= @kit.practitioner.last_name %></em>
         <% end %>
       </aside>
 

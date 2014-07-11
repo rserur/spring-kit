@@ -36,7 +36,6 @@
         <em>- <%= post.sender.first_name %></em>
         <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
     </div>
   <% end %>
 <% end %>

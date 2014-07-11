@@ -5,7 +5,7 @@ class KitsController < ApplicationController
   def index
     if current_user.practitioner?
       @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
-
+      @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
       if @kits.empty?
         flash[:alert] = "No clients found."
       end

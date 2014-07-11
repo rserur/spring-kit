@@ -17,9 +17,8 @@ article {
     color: $tertiary;
   }
 
-  @include span-columns(8);
+  @include span-columns(7);
   float: left;
-  padding-right: 4rem;
 
   .post {
     min-height: 10rem;
