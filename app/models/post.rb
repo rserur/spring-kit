@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
 
   has_attached_file :media, styles: { medium: "300x300>",
     thumb: "100x100>",
-    doc: ["", :png] }
+    doc: ["300x300#", :png] }
   validates_attachment_content_type :media, content_type: ["image/gif", "image/jpg", "image/jpeg", "image/png", "application/pdf",
     "application/msword", "text/plain"]
 
