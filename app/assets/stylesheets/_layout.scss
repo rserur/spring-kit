@@ -1,38 +1,85 @@
 .container {
   @include outer-container();
+  margin-bottom: $nav-height * 2;
 
 }
 
-.main {
-  @include span-columns(12);
-  margin-top: $nav-height;
-}
+  header {
+
+    h1 {
+      color: $tertiary;
+
+    }
+
+    span {
+      @include span-columns(6);
+
+      &#plus {
+        text-align: right;
+        font-size: $base-font-size * 0.95;
+        cursor: pointer;
+      }
+    }
+
+    margin-top: $nav-height / 2;
+
+  }
 
 article {
+
   @include media($mobile) {
     @include span-columns(12);
   }
 
-  h2 {
-    color: $tertiary;
+  @include fill-parent();
+
+  #add {
+
+    -webkit-box-shadow: 10px 10px 0px 0px tint($tertiary, 30);
+    -moz-box-shadow:    10px 10px 0px 0px tint($tertiary, 30);
+    box-shadow:         10px 10px 0px 0px tint($tertiary, 30);
+    border: 1px solid $tertiary;
+    padding: 1rem;
+    color: shade($tertiary, 70);
+    margin-top: 4rem;
+
+    .button {
+      background-color: tint($tertiary, 20);
+    }
   }
 
-  @include span-columns(8);
-  float: left;
-  padding-right: 4rem;
-
   .post {
-    height: 10rem;
+    width: 50%;
+    float: left;
+    height: 480px;
     padding: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin: 0;
     background-color: tint($primary,95);
+    border-left: 1px solid tint($primary, 70);
+    border-top: 1px solid tint($primary, 70);
+
+    -webkit-box-shadow: 10px 10px 0px 0px tint($primary, 70);
+    -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
+    box-shadow:         10px 10px 0px 0px tint($primary, 70);
+
+    input {
+      background-color:tint($tertiary, 60);
+    }
 
     &:hover {
       @include transition (all 0.2s ease-in-out);
       color: lighten($base-font-color,20);
       background-color: #fff;
     }
+
+    .image {
+      @include fill-parent();
+    }
+
+    li.kit {
+      border-bottom: 1px solid tint($primary, 70);
+    }
+
   }
 
   h4 {
@@ -48,23 +95,40 @@ article {
   }
 }
 
-aside {
+.top {
   @include media($mobile) {
     @include span-columns(12);
     padding: 2rem;
   }
 
-  @include span-columns(4);
+  @include span-columns(12);
+
+  -webkit-box-shadow: 10px 10px 0px 0px $sub-primary;
+  -moz-box-shadow:    10px 10px 0px 0px $sub-primary;
+  box-shadow:         10px 10px 0px 0px $sub-primary;
 
   a {
     color: $light;
+
+    i {
+      padding-right: 0.5em;
+      color: shade($sub-primary, 25);
+    }
   }
 
-  float: right;
-  background-color: tint($primary,20);
-  padding: 2.5rem;
+  background-color: tint($primary, 20);
+  padding: 2rem;
+  margin-bottom: 2rem;
 
-  h1, h2 {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .collections, .search {
+
+    h1, h2 {
+
+      border-bottom: 1px solid $sub-primary;
 
     &.logo {
       font-family: $serif;
@@ -77,14 +141,24 @@ aside {
     }
   }
 
-  h2 {
-    font-size: 1.5rem;
   }
 
-  .tags, .search, .add {
-    border-top: 1px solid $sub-primary;
-    min-height: 10rem;
-    padding: 1.5rem 0;
+  .collections {
+    @include span-columns(9 of 12);
+  }
+
+  .search {
+    @include span-columns(3 of 12);
+  }
+
+  .collections li {
+    display: inline;
+    font-size: $base-font-size * 1.7;
+    font-weight: 700;
+
+    a {
+      @include span-columns(6);
+    }
   }
 
 }
@@ -92,7 +166,7 @@ aside {
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 85), tint($primary, 95));
+  @include linear-gradient(tint($primary, 65), tint($primary, 85));
   position: fixed;
   z-index: 999;
   bottom: 0;

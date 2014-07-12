@@ -22,14 +22,29 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
-      redirect_to @kit, notice: 'Post added to kit.'
+      if @post.message
+        flash[:notice] = "Post sent to #{@post.recipient.role} as message and added to kit."
+      else
+        flash[:notice] = 'Post added to kit.'
+      end
+
     else
-      render :new, notice: 'Post could not be added to kit.'
+      flash[:notice] = 'Post could not be added to kit.'
     end
+
+    redirect_to @kit
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    kit = @post.kit_id
+    @post.destroy
+
+    redirect_to kit_path(kit)
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :tag_id, :attachment_id)
+    params.require(:post).permit(:title, :body, :tag_id, :media, :message)
   end
 
 end

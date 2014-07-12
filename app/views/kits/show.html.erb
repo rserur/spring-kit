@@ -1,5 +1,18 @@
-<h2> <%= @kit.client.first_name %>'s SpringKit</h2>
-<em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
+<div id="add">
+  <h3>Add Post</h3>
+
+    <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
+
+    <%= f.input :title %>
+    <%= f.input :body, rows: 5 %>
+    <%= f.input :message, label: 'Post and Send as Message?' %>
+
+    <%= f.file_field :media %>
+
+    <%= f.button :submit %>
+
+    <% end %>
+</div>
 
 <% if @posts %>
   <% @posts.each do |post| %>
@@ -9,9 +22,17 @@
       <div class="post from-practitioner">
     <% end %>
         <h4><%= post.title %></h4>
-        <p><%= post.body %></p>
+        <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
+            <%= image_tag post.media.url(:medium), class: "image" %>
+        <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
+          <a href="<%= post.media.url %>">
+          <%= image_tag post.media.url(:doc) %>
+          Download</a>
+        <% end %>
+        <%= sanitize post.body %>
         <em>- <%= post.sender.first_name %></em>
-      </p>
+        <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
+    method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
 <% end %>

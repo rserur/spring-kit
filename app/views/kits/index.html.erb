@@ -1,13 +1,37 @@
-<h2>Kits</h2>
+<div class="post">
+  <h2>Kits</h2>
+  <ul>
+    <% if @kits %>
 
-<ul>
+      <% @kits.each do |kit| %>
+        <li class="kit">
+          <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %>
+          <strong>Last Updated:</strong> <%= kit.last_updated %>
+        </li>
 
-<% if @kits != nil %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
-  <% @kits.each do |kit| %>
-    <li><a href="<%= kit_path(kit) %>"><%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %></li>
+<% if @messages %>
+  <% @messages.each do |message| %>
+    <div class="post message">
+      <h2>Messages</h2>
+      <h4><%= message.title %></h4>
+      <em>Sent: <%= message.created_at %>
+      <% if message.media && message.media.content_type == "image/gif" || message.media.content_type == "image/jpg" || message.media.content_type == "image/jpeg" || message.media.content_type == "image/png" %>
+        <%= image_tag message.media.url, class: "image" %>
+      <% elsif message.media && message.media.content_type == "application/pdf" || message.media.content_type == "application/msword" || message.media.content_type == "text/plain" %>
+          <a href="<%= message.media.url %>">
+          <%= image_tag message.media.url(:doc) %>
+          Download</a>
+      <% end %>
+        <%= sanitize message.body %>
+        <em>- <%= message.sender.first_name %></em>
+        <%= button_to 'Delete', kit_post_path(message.kit.id, message.id),
+    method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
   <% end %>
 <% end %>
-
-</ul>
 
