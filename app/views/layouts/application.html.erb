@@ -32,21 +32,23 @@
     <p class="alert"><%= alert %></p>
 
     <div class="top">
-      <div class="collections">
-        <h1 class="logo">
-          <a href="/">Collections</a>
-        </h1>
-        <ul>
-          <% @collections.each do |collection| %>
-            <li>
-              <a href="<%= kit_collection_path(@kit, collection.name) %>">
-                <i class="fa fa-database"></i>
-                <%= collection %>
-              </a>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <% if @collections %>
+        <div class="collections">
+          <h1 class="logo">
+            <a href="/">Collections</a>
+          </h1>
+          <ul>
+            <% @collections.each do |collection| %>
+              <li>
+                <a href="<%= kit_collection_path(@kit, collection.name) %>">
+                  <i class="fa fa-database"></i>
+                  <%= collection %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="search">
         <h1 class="logo">
           <a href="/">Search</a>

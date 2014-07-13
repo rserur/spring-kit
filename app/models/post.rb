@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   has_many :media
   acts_as_taggable_on :collections
 
+  before_save :set_tag_owner
+
   has_attached_file :media, styles: { medium: "300x300>",
     thumb: "100x100>",
     doc: ["300x300#", :png] }
