@@ -25,6 +25,8 @@ class KitsController < ApplicationController
       @kit = Kit.find(params[:id])
       @posts = @kit.posts.order(created_at: :desc)
     end
+
+    @collections = Post.tag_counts_on(:collections)
   end
 
   def new
