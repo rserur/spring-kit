@@ -7,9 +7,8 @@ class Post < ActiveRecord::Base
 
   before_save :set_tag_owner
 
-  has_attached_file :media, styles: { medium: "300x300>",
-    thumb: "100x100>",
-    doc: ["300x300#", :png] }
+  has_attached_file :media, styles: { medium: "350x350",
+    doc: ["350x350", :png] }
   validates_attachment_content_type :media, content_type: ["image/gif", "image/jpg", "image/jpeg", "image/png", "application/pdf",
     "application/msword", "text/plain"]
 

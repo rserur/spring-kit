@@ -6,7 +6,7 @@
 
   header {
 
-    h1 {
+    h1, h1 a {
       color: $tertiary;
 
     }
@@ -26,6 +26,7 @@
   }
 
 article {
+
 
   @include media($mobile) {
     @include span-columns(12);
@@ -49,9 +50,8 @@ article {
   }
 
   .post {
-    width: 50%;
+    width: 33.3%;
     float: left;
-    height: 480px;
     padding: 1rem;
     margin: 0;
     background-color: tint($primary,95);
@@ -93,6 +93,27 @@ article {
   .from-practitioner {
     text-align: right;
   }
+
+  display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   /* You can set flex-wrap and flex-direction individually */
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   /* Or do it all in one line with flex flow */
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+       align-items: stretch; /* align items in Cross Axis */
+    align-content: stretch; /* Extra space in Cross Axis */
 }
 
 .top {

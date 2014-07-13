@@ -12,7 +12,7 @@
       <% if current_user && @kit %>
         <h1>
           <span class="title">
-            <%= @kit.client.first_name %>'s SpringKit
+            <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>
           </span>
         <span id="plus">
            <i class="fa fa-plus-circle"></i> Add
@@ -35,7 +35,7 @@
       <% if @collections %>
         <div class="collections">
           <h1 class="logo">
-            <a href="/">Collections</a>
+            Collections
           </h1>
           <ul>
             <% @collections.each do |collection| %>
@@ -51,7 +51,7 @@
       <% end %>
       <div class="search">
         <h1 class="logo">
-          <a href="/">Search</a>
+          Search
         </h1>
         <input type="search">
         <input type="submit">
