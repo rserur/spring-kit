@@ -6,7 +6,7 @@
     <%= f.input :title %>
     <%= f.input :body, rows: 5 %>
     <%= f.input :message, label: 'Post and Send as Message?' %>
-    <%= f.input :tag_list, label: 'Tags separated by commas' %>
+    <%= f.input :collection_list, label: 'Collections separated by commas' %>
 
     <%= f.file_field :media %>
 
@@ -23,7 +23,7 @@
       <div class="post from-practitioner">
     <% end %>
         <h4><%= post.title %></h4>
-        <h5>Tags: <%= raw post.tag_list.map { |t| link_to t, kit_tag_path(@kit, t) }.join(', ') %></h5>
+        <h5>Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %></h5>
         <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
             <%= image_tag post.media.url(:medium), class: "image" %>
         <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>

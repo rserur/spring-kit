@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :kits do
     resources :posts
-    get 'tags/:tag', to: 'kits#show', as: :tag
+    get 'collection/:collection', to: 'kits#show', as: :collection
   end
 
 end
