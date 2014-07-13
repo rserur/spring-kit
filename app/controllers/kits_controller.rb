@@ -16,9 +16,14 @@ class KitsController < ApplicationController
   end
 
   def show
-    @kit = Kit.find(params[:id])
+    @kit = Kit.find(params[:kit_id])
     @post = Post.new
-    @posts = @kit.posts.order(created_at: :desc)
+
+    if params[:tag]
+      @posts = @kit.posts.order(created_at: :desc).tagged_with(params[:tag])
+    else
+      @posts = @kit.posts.order(created_at: :desc)
+    end
   end
 
   def new
