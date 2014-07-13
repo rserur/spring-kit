@@ -6,7 +6,7 @@
     <%= f.input :title %>
     <%= f.input :body, rows: 5 %>
     <%= f.input :message, label: 'Post and Send as Message?' %>
-    <%= f.input :collection_list, label: 'Collections separated by commas' %>
+    <%= f.input :collection_list, value: @post.all_collections_list, label: 'Collections separated by commas' %>
 
     <%= f.file_field :media %>
 

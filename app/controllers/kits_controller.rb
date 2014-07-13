@@ -26,7 +26,7 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
-    @collections = Post.tag_counts_on(:collections)
+    @collections = @kit.owned_tags
   end
 
   def new

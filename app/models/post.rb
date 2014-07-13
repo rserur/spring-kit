@@ -17,4 +17,10 @@ class Post < ActiveRecord::Base
   validates :sender_id, presence: true
   validates :body, presence: true
   validates :kit_id, presence: true
+
+  def set_tag_owner
+    set_owner_tag_list_on(kit, :collections, self.collection_list)
+
+    self.collection_list
+  end
 end
