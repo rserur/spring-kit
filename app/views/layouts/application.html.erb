@@ -19,17 +19,21 @@
         </span>
         </h1>
         <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
-    <% else %>
-        <h1>
-          <span class="title">
-            <a href="/">SpringKit</a>
-          </span>
-        </h1>
-    <% end %>
+      <% else %>
+          <h1>
+            <span class="title">
+              <a href="/">SpringKit</a>
+            </span>
+          </h1>
+      <% end %>
     </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
 
     <div class="top">
       <% if @collections %>
@@ -82,12 +86,33 @@
 
         <ul>
           <% if user_signed_in? %>
-            <li><a href="<%= edit_user_registration_path %>"><i class="fa fa-user"></i></a></li>
-            <li><a href="#">Signed in as <%= current_user.email %></a></li>
-          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+
+            <% if current_user.practitioner? %>
+              <li>
+                <a href="<%= kits_path %>">
+                  <i class="fa fa-list"></i> All Kits
+                </a>
+              </li>
+            <% end %>
+
+            <li>
+              <a href="<%= edit_user_registration_path %>">
+                <i class="fa fa-user"></i> Edit Profile (signed in as <%= current_user.email %>)
+              </a>
+            </li>
+
+
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+                <i class="fa fa-sign-out"></i> Sign Out
+              <% end %>
+            </li>
+
           <% else %>
+
             <li><%= link_to 'Register', new_user_registration_path %></li>
             <li><%= link_to 'Sign In', new_user_session_path %></li>
+
           <% end %>
         </ul>
     </nav>

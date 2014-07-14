@@ -6,6 +6,8 @@
 
   header {
 
+    @include span-columns(12);
+
     h1, h1 a {
       color: $tertiary;
       font-family: $serif;
@@ -25,6 +27,112 @@
 
   }
 
+  .alert {
+    border-radius: 0.2em;
+    border: 1px tint($tertiary,60) solid;
+    background-color: tint($tertiary, 90);
+    @include span-columns(3);
+    color: tint($tertiary, 10);
+    padding: 0.2em;
+    margin: 0.4em 0;
+    float: left;
+  }
+
+  .notice {
+    border-radius: 0.2em;
+    border: 1px tint($sub-primary,60) solid;
+    background-color: tint($sub-primary, 90);
+    @include span-columns(3);
+    color: tint($sub-primary, 10);
+    padding: 0.2em;
+    margin: 0.4em 0;
+    float: left;
+  }
+
+  #lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+  }
+
+.top {
+  @include media($mobile) {
+    @include span-columns(12);
+    padding: 2rem;
+  }
+
+  @include span-columns(12);
+
+  -webkit-box-shadow: 10px 10px 0px 0px $sub-primary;
+  -moz-box-shadow:    10px 10px 0px 0px $sub-primary;
+  box-shadow:         10px 10px 0px 0px $sub-primary;
+
+  a {
+    color: $light;
+
+    i {
+      padding-right: 0.5em;
+      color: shade($sub-primary, 25);
+    }
+  }
+
+  background-color: tint($primary, 20);
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .collections, .search, .messages {
+
+    h1, h2 {
+
+      border-bottom: 1px solid $sub-primary;
+
+      &.logo {
+        font-family: $serif;
+        margin-top: 0;
+
+        a {
+          color: shade($sub-primary,50);
+        }
+
+      }
+
+    }
+
+  }
+
+  .collections {
+    @include span-columns(5 of 12);
+  }
+
+  .search {
+    @include span-columns(2 of 12);
+  }
+
+  .messages {
+    @include span-columns(5 of 12);
+  }
+
+  .collections li {
+    display: inline;
+    font-size: $base-font-size * 1.2;
+    font-weight: 700;
+
+    a {
+      @include span-columns(6);
+    }
+  }
+
+}
+
 article {
 
 
@@ -36,13 +144,10 @@ article {
 
   #add {
 
-    -webkit-box-shadow: 10px 10px 0px 0px tint($tertiary, 30);
-    -moz-box-shadow:    10px 10px 0px 0px tint($tertiary, 30);
-    box-shadow:         10px 10px 0px 0px tint($tertiary, 30);
-    border: 1px solid $tertiary;
     padding: 1rem;
     color: shade($tertiary, 70);
-    margin-top: 1rem;
+    background-color: white;
+    color: shade($primary, 20);
 
     .button {
       background-color: tint($tertiary, 20);
@@ -62,10 +167,6 @@ article {
     -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
     box-shadow:         10px 10px 0px 0px tint($primary, 70);
 
-    input {
-      background-color:tint($tertiary, 60);
-    }
-
     &:hover {
       @include transition (all 0.2s ease-in-out);
       color: lighten($base-font-color,20);
@@ -78,6 +179,20 @@ article {
 
     li.kit {
       border-bottom: 1px solid tint($primary, 70);
+    }
+
+    position: relative;
+
+    .post-buttons {
+
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+    right: 1em;
+
+      input {
+        float: right;
+      }
     }
 
   }
@@ -119,82 +234,10 @@ article {
   align-content: stretch;
 }
 
-.top {
-  @include media($mobile) {
-    @include span-columns(12);
-    padding: 2rem;
-  }
-
-  @include span-columns(12);
-
-  -webkit-box-shadow: 10px 10px 0px 0px $sub-primary;
-  -moz-box-shadow:    10px 10px 0px 0px $sub-primary;
-  box-shadow:         10px 10px 0px 0px $sub-primary;
-
-  a {
-    color: $light;
-
-    i {
-      padding-right: 0.5em;
-      color: shade($sub-primary, 25);
-    }
-  }
-
-  background-color: tint($primary, 20);
-  padding: 2rem;
-  margin-bottom: 2rem;
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .collections, .search, .messages {
-
-    h1, h2 {
-
-      border-bottom: 1px solid $sub-primary;
-
-    &.logo {
-      font-family: $serif;
-      margin-top: 0;
-
-      a {
-        color: shade($sub-primary,50);
-      }
-
-    }
-  }
-
-  }
-
-  .collections {
-    @include span-columns(5 of 12);
-  }
-
-  .search {
-    @include span-columns(2 of 12);
-  }
-
-  .messages {
-    @include span-columns(5 of 12);
-  }
-
-  .collections li {
-    display: inline;
-    font-size: $base-font-size * 1.2;
-    font-weight: 700;
-
-    a {
-      @include span-columns(6);
-    }
-  }
-
-}
-
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 65), tint($primary, 85));
+  @include linear-gradient(tint($primary, 55), tint($primary, 80));
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -215,7 +258,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: $primary;
+        color: shade($primary, 10);
       }
     }
   }
@@ -225,3 +268,4 @@ nav {
 nav a {
   color: $light;
 }
+

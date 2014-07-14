@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#add").hide();
 
     $("#plus").click(function() {
-        $("#add").toggle();
+        $("#add").slideToggle(1000, 'easeOutBounce');
     });
 
     $(function() {

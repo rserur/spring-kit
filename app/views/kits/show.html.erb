@@ -1,4 +1,4 @@
-<div id="add">
+<div id="add" class="post">
   <h3>Add Post</h3>
 
     <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
@@ -58,8 +58,11 @@
 
         <% end %>
 
-        <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
+        <div class="post-buttons">
+          <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= button_to 'Edit', edit_kit_post_path(@kit.id, post.id) %>
+        </div>
 
     </div>
 
