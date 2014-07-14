@@ -149,8 +149,32 @@ article {
     background-color: white;
     color: shade($primary, 20);
 
+    h3 {
+      color: $sub-primary;
+    }
+
+    input.boolean, label.boolean {
+      float: left;
+    }
+
+    .post_collection_list {
+      clear: both;
+    }
+
     .button {
       background-color: tint($tertiary, 20);
+    }
+
+    .fr-bttn {
+      color: $sub-primary;
+    }
+
+    label {
+      color: $sub-primary;
+    }
+
+    input {
+      border-color: tint($sub-primary, 40);
     }
   }
 

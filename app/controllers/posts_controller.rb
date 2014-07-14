@@ -40,6 +40,7 @@ class PostsController < ApplicationController
     kit = @post.kit_id
     @post.destroy
 
+    flash[:alert] = 'Post deleted from kit.'
     redirect_to kit_path(kit)
   end
 
