@@ -23,12 +23,15 @@ feature "user adds post to kit", %q{
     fill_in "Title", with: "Book Suggestions"
     fill_in "Body", with: "The books I mentioned: How to Stop Worrying by Dale Carnegie
     and Blink the Power of Thinking by Malcom Gladwell"
+    fill_in "Collections (separated by commas)", with: "books, cognition"
 
     click_on "Create Post"
 
     expect(page).to have_content "Book Suggestions"
     expect(page).to have_content "Malcom Gladwell"
     expect(page).to have_content "Post added to kit."
+    expect(page).to have_content "books"
+    expect(page).to have_content "cognition"
   end
 
   scenario "Client posts to client's kit" do
@@ -41,12 +44,15 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "Coping Strategies I like"
     fill_in "Body", with: "- Meditation, mindful breathing, watching TV..."
+    fill_in "Collections (separated by commas)", with: "strategies, notes"
 
     click_on "Create Post"
 
     expect(page).to have_content "Coping Strategies"
     expect(page).to have_content "Meditation"
     expect(page).to have_content "Post added to kit."
+    expect(page).to have_content "strategies"
+    expect(page).to have_content "notes"
   end
 
   scenario "Client creates post as message" do
@@ -59,7 +65,7 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "A question"
     fill_in "Body", with: "Do we have an appointment on Monday?"
-    check "Post and Send as Message?"
+    check "Post and send as message?"
 
     click_on "Create Post"
 
@@ -78,7 +84,7 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "Just a reminder"
     fill_in "Body", with: "Please bring the worksheet if you can."
-    check "Post and Send as Message?"
+    check "Post and send as message?"
 
     click_on "Create Post"
 

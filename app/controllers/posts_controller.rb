@@ -35,16 +35,24 @@ class PostsController < ApplicationController
     redirect_to @kit
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    kit = @post.kit_id
+  end
+
   def destroy
     @post = Post.find(params[:id])
     kit = @post.kit_id
     @post.destroy
 
+    flash[:alert] = 'Post deleted from kit.'
     redirect_to kit_path(kit)
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :tag_id, :media, :message)
+    params.require(:post).permit(
+      :title, :body, :collection_list, :media, :message
+    )
   end
 
 end

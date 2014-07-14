@@ -16,9 +16,24 @@ class KitsController < ApplicationController
   end
 
   def show
-    @kit = Kit.find(params[:id])
     @post = Post.new
-    @posts = @kit.posts.order(created_at: :desc)
+
+    if params[:collection]
+      @kit = Kit.find(params[:kit_id])
+      @posts = @kit.posts.order(created_at: :desc).tagged_with(params[:collection])
+    else
+      @kit = Kit.find(params[:id])
+      @posts = @kit.posts.order(created_at: :desc)
+    end
+
+    if @message && !@messages.empty?
+      @messages = Post.where("message = ? AND recipient_id = ?", true,
+                              current_user.id)
+    else
+      @messages = nil
+    end
+
+    @collections = @kit.owned_tags
   end
 
   def new

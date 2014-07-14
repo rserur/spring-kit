@@ -63,3 +63,7 @@ gem 'bitters'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'wysiwyg-rails'
+
+gem 'acts-as-taggable-on'
+gem 'jquery-turbolinks'
+

@@ -8,50 +8,81 @@
 </head>
 <body>
   <div class="container">
+
     <header>
       <% if current_user && @kit %>
         <h1>
           <span class="title">
-            <%= @kit.client.first_name %>'s SpringKit
+            <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>
           </span>
         <span id="plus">
            <i class="fa fa-plus-circle"></i> Add
         </span>
         </h1>
         <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
-    <% else %>
-        <h1>
-          <span class="title">
-            SpringKit
-          </span>
-        </h1>
-    <% end %>
+      <% else %>
+          <h1>
+            <span class="title">
+              <a href="/">SpringKit</a>
+            </span>
+          </h1>
+      <% end %>
     </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
 
-    <div class="top">
-      <div class="collections">
-        <h1 class="logo">
-          <a href="/">Collections</a>
-        </h1>
-        <ul>
-          <li><a href="/"><i class="fa fa-database"></i>  Worksheets</a></li>
-          <li><a href="/"><i class="fa fa-database"></i>  Inspiration</a></li>
-          <li><a href="/"><i class="fa fa-database"></i>  Messages</a></li>
-          <li><a href="/"><i class="fa fa-database"></i>  Links</a></li>
-        </ul>
+  <div class="top">
+    <% if current_user %>
+        <div class="collections">
+          <h2 class="title">
+            Collections
+          </h2>
+          <% if @collections && !@collections.empty? %>
+            <ul>
+              <% @collections.each do |collection| %>
+                <li>
+                  <a href="<%= kit_collection_path(@kit, collection.name) %>">
+                    <i class="fa fa-database"></i>
+                    <%= collection %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            No collections yet! Add a post to get started.
+          <% end %>
       </div>
-      <div class="search">
-        <h1 class="logo">
-          <a href="/">Search</a>
-        </h1>
-        <input type="search">
-        <input type="submit">
-      </div>
-    </div>
 
+          <div class="messages">
+            <h2 class="title">
+              Messages
+            </h2>
+          <% if @messages && !current_user.practitioner? %>
+            <ul>
+              <% @messages.each do |message| %>
+                <li>
+                  <strong><%= message.title %></strong>
+                  <em><%= message.created_at.to_formatted_s(:long)  %></em>
+                  <%= sanitize message.body %> - <%= message.sender.first_name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <% else %>
+              No recent messages.
+            </div>
+        <% end %>
+      </div>
+    <% else %>
+        <h1>Welcome to SpringKit!</h1>
+        </div>
+    <% end %>
+  </body>
     <article>
       <%= yield %>
     </article>
@@ -60,12 +91,36 @@
 
         <ul>
           <% if user_signed_in? %>
-            <li><a href="<%= edit_user_registration_path %>"><i class="fa fa-user"></i></a></li>
-            <li><a href="#">Signed in as <%= current_user.email %></a></li>
-          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+
+            <% if current_user.practitioner? %>
+              <li>
+                <a href="<%= kits_path %>">
+                  <i class="fa fa-list"></i> All Kits
+                </a>
+              </li>
+            <% end %>
+
+            <li>
+              <a href="<%= edit_user_registration_path %>">
+                <i class="fa fa-user"></i> Edit Profile (signed in as <%= current_user.email %>)
+              </a>
+            </li>
+
+
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+                <i class="fa fa-sign-out"></i> Sign Out
+              <% end %>
+            </li>
+
           <% else %>
-            <li><%= link_to 'Register', new_user_registration_path %></li>
-            <li><%= link_to 'Sign In', new_user_session_path %></li>
+
+            <li>
+              <%= link_to new_user_session_path do %>
+                <i class="fa fa-sign-in"></i> Sign In
+              <% end %>
+            </li>
+
           <% end %>
         </ul>
     </nav>

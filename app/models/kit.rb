@@ -3,6 +3,8 @@ class Kit < ActiveRecord::Base
   dependent: :destroy,
   inverse_of: :kit
 
+  acts_as_tagger
+
   belongs_to :client, class_name: 'User', foreign_key: 'client_id'
   belongs_to :practitioner, class_name: 'User', foreign_key: 'practitioner_id'
 

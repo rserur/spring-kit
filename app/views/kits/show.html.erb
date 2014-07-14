@@ -1,38 +1,78 @@
-<div id="add">
+<div id="add" class="post">
+
   <h3>Add Post</h3>
 
     <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
 
     <%= f.input :title %>
     <%= f.input :body, rows: 5 %>
-    <%= f.input :message, label: 'Post and Send as Message?' %>
+     <%= f.input :message, as: :boolean, inline_label: true, label: 'Post and send as message?' %>
+
+    <%= f.input :collection_list, value: @post.all_collections_list, label: 'Collections (separated by commas)' %>
 
     <%= f.file_field :media %>
 
     <%= f.button :submit %>
 
     <% end %>
+
 </div>
 
 <% if @posts %>
   <% @posts.each do |post| %>
+
     <% if post.sender_id == post.kit.client_id %>
+
       <div class="post from-client">
+
     <% else %>
+
       <div class="post from-practitioner">
+
     <% end %>
-        <h4><%= post.title %></h4>
-        <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
-            <%= image_tag post.media.url(:medium), class: "image" %>
-        <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
-          <a href="<%= post.media.url %>">
-          <%= image_tag post.media.url(:doc) %>
+
+    <h4><%= post.title %></h4>
+
+    <em><%= post.created_at.to_formatted_s(:long) %></em>
+
+    <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
+
+        <%= image_tag post.media.url(:medium), class: "image" %>
+
+    <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
+
+        <a href="<%= post.media.url %>">
+
+    <%= image_tag post.media.url(:doc) %>
+
           Download</a>
-        <% end %>
+
+    <% end %>
+
         <%= sanitize post.body %>
+
         <em>- <%= post.sender.first_name %></em>
-        <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
-    method: :delete, data: { confirm: 'Are you sure?' } %>
+
+        <% if !post.collection_list.empty? %>
+
+          <p>
+            Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %>
+          </p>
+
+        <% end %>
+
+        <div class="post-buttons">
+          <%= link_to edit_kit_post_path(post.kit.id, post.id) do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+
+          <%= link_to kit_post_path(post.kit.id, post.id),
+    method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+          <i class="fa fa-times-circle"></i>
+        <% end %>
+        </div>
+
     </div>
+
   <% end %>
 <% end %>

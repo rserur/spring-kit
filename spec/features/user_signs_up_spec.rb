@@ -18,8 +18,6 @@ feature "user signs up", %q{
     visit new_user_registration_path
 
     fill_in "Email", with: "example@example.com"
-    fill_in "First name", with: "Sally"
-    fill_in "Last name", with: "O'Maley"
     select organization.name, from: 'user[organization_id]'
     fill_in "Password", with: "abcd1234", match: :prefer_exact
     fill_in "Password confirmation", with: "abcd1234"

@@ -1,14 +1,15 @@
 .container {
   @include outer-container();
   margin-bottom: $nav-height * 2;
-
 }
 
   header {
 
-    h1 {
-      color: $tertiary;
+    @include span-columns(12);
 
+    h1, h1 a {
+      color: $tertiary;
+      font-family: $serif;
     }
 
     span {
@@ -25,75 +26,27 @@
 
   }
 
-article {
-
-  @include media($mobile) {
+  .alert {
+    border-radius: 0.2em;
+    border: 1px tint($tertiary,60) solid;
+    background-color: tint($tertiary, 90);
     @include span-columns(12);
-  }
-
-  @include fill-parent();
-
-  #add {
-
-    -webkit-box-shadow: 10px 10px 0px 0px tint($tertiary, 30);
-    -moz-box-shadow:    10px 10px 0px 0px tint($tertiary, 30);
-    box-shadow:         10px 10px 0px 0px tint($tertiary, 30);
-    border: 1px solid $tertiary;
-    padding: 1rem;
-    color: shade($tertiary, 70);
-    margin-top: 4rem;
-
-    .button {
-      background-color: tint($tertiary, 20);
-    }
-  }
-
-  .post {
-    width: 50%;
+    color: tint($tertiary, 10);
+    padding: 0.2em;
+    margin: 0.4em 0;
     float: left;
-    height: 480px;
-    padding: 1rem;
-    margin: 0;
-    background-color: tint($primary,95);
-    border-left: 1px solid tint($primary, 70);
-    border-top: 1px solid tint($primary, 70);
-
-    -webkit-box-shadow: 10px 10px 0px 0px tint($primary, 70);
-    -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
-    box-shadow:         10px 10px 0px 0px tint($primary, 70);
-
-    input {
-      background-color:tint($tertiary, 60);
-    }
-
-    &:hover {
-      @include transition (all 0.2s ease-in-out);
-      color: lighten($base-font-color,20);
-      background-color: #fff;
-    }
-
-    .image {
-      @include fill-parent();
-    }
-
-    li.kit {
-      border-bottom: 1px solid tint($primary, 70);
-    }
-
   }
 
-  h4 {
-    color: $primary;
+  .notice {
+    border-radius: 0.2em;
+    border: 1px tint($sub-primary,60) solid;
+    background-color: tint($sub-primary, 90);
+    @include span-columns(12);
+    color: tint($sub-primary, 10);
+    padding: 0.2em;
+    margin: 0.4em 0;
+    float: left;
   }
-
-  .from-client {
-    text-align: left;
-  }
-
-  .from-practitioner {
-    text-align: right;
-  }
-}
 
 .top {
   @include media($mobile) {
@@ -124,36 +77,37 @@ article {
     font-size: 1.5rem;
   }
 
-  .collections, .search {
+  .collections, .search-short, .search-long, .messages {
 
-    h1, h2 {
+    h2 {
 
       border-bottom: 1px solid $sub-primary;
 
-    &.logo {
-      font-family: $serif;
-      margin-top: 0;
+      &.title {
+        font-family: $serif;
+        margin-top: 0;
 
-      a {
-        color: shade($sub-primary,50);
+        a {
+          color: shade($sub-primary,50);
+        }
+
       }
 
     }
-  }
 
   }
 
   .collections {
-    @include span-columns(9 of 12);
+    @include span-columns(8 of 12);
   }
 
-  .search {
-    @include span-columns(3 of 12);
+  .messages {
+    @include span-columns(4 of 12);
   }
 
   .collections li {
     display: inline;
-    font-size: $base-font-size * 1.7;
+    font-size: $base-font-size * 1.2;
     font-weight: 700;
 
     a {
@@ -163,10 +117,198 @@ article {
 
 }
 
+article {
+
+
+  @include media($mobile) {
+    @include span-columns(12);
+  }
+
+  @include fill-parent();
+
+  #add {
+
+    min-height: 0;
+
+    padding: 1rem;
+    color: shade($tertiary, 70);
+    background-color: white;
+    color: shade($primary, 20);
+
+    h3 {
+      color: $sub-primary;
+    }
+
+    input.boolean, label.boolean {
+      float: left;
+    }
+
+    .post_collection_list {
+      clear: both;
+    }
+
+    .button {
+      background-color: tint($tertiary, 20);
+    }
+
+    .fr-bttn {
+      color: $sub-primary;
+    }
+
+    label {
+      color: $sub-primary;
+    }
+
+    input {
+      border-color: tint($sub-primary, 40);
+    }
+  }
+
+  .post {
+    width: 33.3%;
+    min-height: 200px;
+    float: left;
+    padding: 1rem;
+    margin: 0;
+    background-color: tint($primary,95);
+    border-left: 1px solid tint($primary, 70);
+    border-top: 1px solid tint($primary, 70);
+
+    -webkit-box-shadow: 10px 10px 0px 0px tint($primary, 70);
+    -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
+    box-shadow:         10px 10px 0px 0px tint($primary, 70);
+
+    &:hover {
+      @include transition (all 0.2s ease-in-out);
+      color: lighten($base-font-color,20);
+      background-color: #fff;
+    }
+
+    .image {
+      @include fill-parent();
+    }
+
+    li.kit {
+      border-bottom: 1px solid tint($primary, 70);
+    }
+
+    position: relative;
+
+    .post-buttons {
+
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
+
+      input {
+        float: right;
+      }
+
+      a {
+        color: tint($primary, 40);
+
+        :hover {
+          color: $primary;
+        }
+      }
+
+      i {
+        font-size: 2rem;
+      }
+    }
+
+    .message {
+      border-bottom: 1px solid tint($primary, 70);
+
+      a {
+
+        color: tint($primary, 60);
+
+        :hover {
+          color: $primary;
+        }
+
+       i {
+        float: right;
+        }
+      }
+    }
+
+  }
+
+  .sign-up {
+    background-color: tint($tertiary, 95);
+    border: 1px solid tint($tertiary, 65);
+
+    input, select {
+
+      width: 100%;
+
+      &.button {
+        background-color: tint($tertiary, 15);
+      }
+    }
+    h4 {
+      color: $tertiary;
+    }
+  }
+
+  h4 {
+    color: $primary;
+  }
+
+  .from-client {
+    text-align: left;
+  }
+
+  .from-practitioner {
+    text-align: right;
+    background-color: tint($tertiary, 95);
+    border: 1px solid tint($tertiary, 70);
+
+    a {
+      color: $tertiary;
+    }
+
+    .post-buttons {
+
+      a {
+        color: tint($tertiary, 70);
+
+        :hover {
+          color: $tertiary;
+        }
+      }
+    }
+
+    h4 {
+      color: $tertiary;
+    }
+  }
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: left;
+  align-items: left;
+  -webkit-justify-content: left;
+  justify-content: left;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+  align-items: stretch;
+  align-content: stretch;
+}
+
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 65), tint($primary, 85));
+  @include linear-gradient(tint($primary, 55), tint($primary, 80));
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -187,7 +329,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: $primary;
+        color: shade($primary, 10);
       }
     }
   }
@@ -196,4 +338,12 @@ nav {
 
 nav a {
   color: $light;
+}
+
+.edit_user {
+  @include span-columns(6);
+}
+
+.cancellation {
+  @include span-columns(6);
 }
