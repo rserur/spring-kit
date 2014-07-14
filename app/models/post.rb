@@ -20,6 +20,6 @@ class Post < ActiveRecord::Base
   def set_tag_owner
     set_owner_tag_list_on(kit, :collections, self.collection_list)
 
-    self.collection_list
+    collection_list
   end
 end

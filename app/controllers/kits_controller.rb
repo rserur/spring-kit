@@ -33,7 +33,6 @@ class KitsController < ApplicationController
     end
 
     @collections = @kit.owned_tags
-
   end
 
   def new

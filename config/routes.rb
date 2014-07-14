@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root "landing#index"
-
-  resources :landing, only: :index
+  devise_scope :user do
+    get "/", :to => "devise/registrations#new"
+  end
 
   devise_for :users
 

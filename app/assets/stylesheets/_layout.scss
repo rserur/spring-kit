@@ -236,6 +236,23 @@ article {
 
   }
 
+  .sign-up {
+    background-color: tint($tertiary, 95);
+    border: 1px solid tint($tertiary, 65);
+
+    input, select {
+
+      width: 100%;
+
+      &.button {
+        background-color: tint($tertiary, 15);
+      }
+    }
+    h4 {
+      color: $tertiary;
+    }
+  }
+
   h4 {
     color: $primary;
   }
