@@ -30,7 +30,7 @@
     border-radius: 0.2em;
     border: 1px tint($tertiary,60) solid;
     background-color: tint($tertiary, 90);
-    @include span-columns(3);
+    @include span-columns(12);
     color: tint($tertiary, 10);
     padding: 0.2em;
     margin: 0.4em 0;
@@ -41,7 +41,7 @@
     border-radius: 0.2em;
     border: 1px tint($sub-primary,60) solid;
     background-color: tint($sub-primary, 90);
-    @include span-columns(3);
+    @include span-columns(12);
     color: tint($sub-primary, 10);
     padding: 0.2em;
     margin: 0.4em 0;

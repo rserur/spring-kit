@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+
     <header>
       <% if current_user && @kit %>
         <h1>
@@ -37,11 +38,11 @@
 
   <div class="top">
     <% if current_user %>
-        <% if @collections && !@collections.empty? %>
-          <div class="collections">
-            <h2 class="title">
-              Collections
-            </h2>
+        <div class="collections">
+          <h2 class="title">
+            Collections
+          </h2>
+          <% if @collections && !@collections.empty? %>
             <ul>
               <% @collections.each do |collection| %>
                 <li>
@@ -52,8 +53,11 @@
                 </li>
               <% end %>
             </ul>
-          </div>
-        <% end %>
+          <% else %>
+            No collections yet! Add a post to get started.
+          <% end %>
+      </div>
+
           <div class="messages">
             <h2 class="title">
               Messages
@@ -73,10 +77,12 @@
               No recent messages.
             </div>
         <% end %>
+      </div>
     <% else %>
-        <h1>Welcome to SpringKit.</h1>
+        <h1>Welcome to SpringKit!</h1>
+        </div>
     <% end %>
-  </div>
+  </body>
     <article>
       <%= yield %>
     </article>
