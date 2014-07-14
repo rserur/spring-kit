@@ -27,7 +27,8 @@ class KitsController < ApplicationController
     end
 
     if @message && !@messages.empty?
-      @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
+      @messages = Post.where("message = ? AND recipient_id = ?", true,
+        current_user.id)
     else
       @messages = nil
     end
