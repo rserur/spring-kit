@@ -35,49 +35,48 @@
       <div class="alert"><%= alert %></div>
     <% end %>
 
-    <div class="top">
-      <% if @collections %>
-        <div class="collections">
-          <h1 class="logo">
-            Collections
-          </h1>
-          <ul>
-            <% @collections.each do |collection| %>
-              <li>
-                <a href="<%= kit_collection_path(@kit, collection.name) %>">
-                  <i class="fa fa-database"></i>
-                  <%= collection %>
-                </a>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-       <% if @messages && !current_user.practitioner? %>
-        <div class="messages">
-          <h1 class="logo">
-            Messages
-          </h1>
-          <ul>
-            <% @messages.each do |message| %>
-              <li>
-                <strong><%= message.title %></strong>
-                <em><%= message.created_at.to_formatted_s(:long)  %></em>
-                <%= sanitize message.body %> - <%= message.sender.first_name %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="search">
-        <h1 class="logo">
-          Search
-        </h1>
-        <input type="search">
-        <input type="submit">
-      </div>
-    </div>
-
+  <div class="top">
+    <% if current_user %>
+        <% if @collections && !@collections.empty? %>
+          <div class="collections">
+            <h2 class="title">
+              Collections
+            </h2>
+            <ul>
+              <% @collections.each do |collection| %>
+                <li>
+                  <a href="<%= kit_collection_path(@kit, collection.name) %>">
+                    <i class="fa fa-database"></i>
+                    <%= collection %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <div class="messages">
+            <h2 class="title">
+              Messages
+            </h2>
+          <% if @messages && !current_user.practitioner? %>
+            <ul>
+              <% @messages.each do |message| %>
+                <li>
+                  <strong><%= message.title %></strong>
+                  <em><%= message.created_at.to_formatted_s(:long)  %></em>
+                  <%= sanitize message.body %> - <%= message.sender.first_name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <% else %>
+              No recent messages.
+            </div>
+        <% end %>
+    <% else %>
+        <h1>Welcome to SpringKit.</h1>
+    <% end %>
+  </div>
     <article>
       <%= yield %>
     </article>

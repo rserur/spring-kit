@@ -1,7 +1,7 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
+
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
@@ -20,8 +20,10 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<div class="cancellation">
+  <h3>Cancel My Account</h3>
 
-<%= link_to "Back", :back %>
+  <p>Want to delete your account, kit(s), and posts?</p>
+  <%= link_to "Yes, cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+</div>

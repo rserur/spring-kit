@@ -1,4 +1,5 @@
 <div id="add" class="post">
+
   <h3>Add Post</h3>
 
     <%= simple_form_for [@kit, @post], html: { multipart: true } do |f| %>
@@ -14,6 +15,7 @@
     <%= f.button :submit %>
 
     <% end %>
+
 </div>
 
 <% if @posts %>
@@ -60,9 +62,14 @@
         <% end %>
 
         <div class="post-buttons">
-          <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
-    method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= button_to 'Edit', edit_kit_post_path(@kit.id, post.id) %>
+          <%= link_to edit_kit_post_path(post.kit.id, post.id) do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+
+          <%= link_to kit_post_path(post.kit.id, post.id),
+    method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+          <i class="fa fa-times-circle"></i>
+        <% end %>
         </div>
 
     </div>

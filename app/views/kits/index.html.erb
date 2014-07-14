@@ -29,8 +29,10 @@
       <% end %>
         <%= sanitize message.body %>
         <em>- <%= message.sender.first_name %></em>
-        <%= button_to 'Delete', kit_post_path(message.kit.id, message.id),
-    method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to kit_post_path(message.kit.id, message.id),
+    method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-times-circle"></i>
+        <% end %>
 
   <% end %>
 

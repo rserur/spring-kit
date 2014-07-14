@@ -1,7 +1,6 @@
 .container {
   @include outer-container();
   margin-bottom: $nav-height * 2;
-
 }
 
   header {
@@ -49,17 +48,6 @@
     float: left;
   }
 
-  #lean_overlay {
-    position: fixed;
-    z-index:100;
-    top: 0px;
-    left: 0px;
-    height:100%;
-    width:100%;
-    background: #000;
-    display: none;
-  }
-
 .top {
   @include media($mobile) {
     @include span-columns(12);
@@ -89,13 +77,13 @@
     font-size: 1.5rem;
   }
 
-  .collections, .search, .messages {
+  .collections, .search-short, .search-long, .messages {
 
-    h1, h2 {
+    h2 {
 
       border-bottom: 1px solid $sub-primary;
 
-      &.logo {
+      &.title {
         font-family: $serif;
         margin-top: 0;
 
@@ -110,15 +98,11 @@
   }
 
   .collections {
-    @include span-columns(5 of 12);
-  }
-
-  .search {
-    @include span-columns(2 of 12);
+    @include span-columns(8 of 12);
   }
 
   .messages {
-    @include span-columns(5 of 12);
+    @include span-columns(4 of 12);
   }
 
   .collections li {
@@ -143,6 +127,8 @@ article {
   @include fill-parent();
 
   #add {
+
+    min-height: 0;
 
     padding: 1rem;
     color: shade($tertiary, 70);
@@ -180,6 +166,7 @@ article {
 
   .post {
     width: 33.3%;
+    min-height: 200px;
     float: left;
     padding: 1rem;
     margin: 0;
@@ -209,13 +196,24 @@ article {
 
     .post-buttons {
 
-    position: absolute;
-    bottom: 1em;
-    width: 100%;
-    right: 1em;
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
 
       input {
         float: right;
+      }
+
+      a {
+        color: tint($primary, 40);
+
+        :hover {
+          color: $primary;
+        }
+      }
+
+      i {
+        font-size: 2rem;
       }
     }
 
@@ -233,6 +231,21 @@ article {
     text-align: right;
     background-color: tint($tertiary, 95);
     border: 1px solid tint($tertiary, 70);
+
+    a {
+      color: $tertiary;
+    }
+
+    .post-buttons {
+
+      a {
+        color: tint($tertiary, 70);
+
+        :hover {
+          color: $tertiary;
+        }
+      }
+    }
 
     h4 {
       color: $tertiary;
@@ -293,3 +306,10 @@ nav a {
   color: $light;
 }
 
+.edit_user {
+  @include span-columns(6);
+}
+
+.cancellation {
+  @include span-columns(6);
+}

@@ -35,6 +35,11 @@ class PostsController < ApplicationController
     redirect_to @kit
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    kit = @post.kit_id
+  end
+
   def destroy
     @post = Post.find(params[:id])
     kit = @post.kit_id
