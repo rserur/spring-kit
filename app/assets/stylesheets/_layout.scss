@@ -217,6 +217,23 @@ article {
       }
     }
 
+    .message {
+      border-bottom: 1px solid tint($primary, 70);
+
+      a {
+
+        color: tint($primary, 60);
+
+        :hover {
+          color: $primary;
+        }
+
+       i {
+        float: right;
+        }
+      }
+    }
+
   }
 
   h4 {
