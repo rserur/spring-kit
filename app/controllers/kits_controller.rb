@@ -26,7 +26,10 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
+    @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
+
     @collections = @kit.owned_tags
+
   end
 
   def new

@@ -8,7 +8,7 @@
 
     h1, h1 a {
       color: $tertiary;
-
+      font-family: $serif;
     }
 
     span {
@@ -42,7 +42,7 @@ article {
     border: 1px solid $tertiary;
     padding: 1rem;
     color: shade($tertiary, 70);
-    margin-top: 4rem;
+    margin-top: 1rem;
 
     .button {
       background-color: tint($tertiary, 20);
@@ -92,28 +92,31 @@ article {
 
   .from-practitioner {
     text-align: right;
+    background-color: tint($tertiary, 95);
+    border: 1px solid tint($tertiary, 70);
+
+    h4 {
+      color: $tertiary;
+    }
   }
 
   display: -webkit-flex;
-   display: flex;
-   -webkit-align-items: center;
-   align-items: center;
-   -webkit-justify-content: center;
-   justify-content: center;
-   /* You can set flex-wrap and flex-direction individually */
-   -webkit-flex-direction: row;
-   flex-direction: row;
-   -webkit-flex-wrap: wrap;
-   flex-wrap: wrap;
-   /* Or do it all in one line with flex flow */
-   -webkit-flex-flow: row wrap;
-   flex-flow: row wrap;
-   /* tweak the where items line up on the row */
-   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
-   -webkit-align-content: flex-end;
-   align-content: flex-end;
-       align-items: stretch; /* align items in Cross Axis */
-    align-content: stretch; /* Extra space in Cross Axis */
+  display: flex;
+  -webkit-align-items: left;
+  align-items: left;
+  -webkit-justify-content: left;
+  justify-content: left;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+  align-items: stretch;
+  align-content: stretch;
 }
 
 .top {
@@ -145,7 +148,7 @@ article {
     font-size: 1.5rem;
   }
 
-  .collections, .search {
+  .collections, .search, .messages {
 
     h1, h2 {
 
@@ -165,16 +168,20 @@ article {
   }
 
   .collections {
-    @include span-columns(9 of 12);
+    @include span-columns(5 of 12);
   }
 
   .search {
-    @include span-columns(3 of 12);
+    @include span-columns(2 of 12);
+  }
+
+  .messages {
+    @include span-columns(5 of 12);
   }
 
   .collections li {
     display: inline;
-    font-size: $base-font-size * 1.7;
+    font-size: $base-font-size * 1.2;
     font-weight: 700;
 
     a {

@@ -15,11 +15,11 @@
 </div>
 
 <% if @messages %>
+  <div class="post message">
+  <h2>Messages</h2>
   <% @messages.each do |message| %>
-    <div class="post message">
-      <h2>Messages</h2>
       <h4><%= message.title %></h4>
-      <em>Sent: <%= message.created_at %>
+      <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em>
       <% if message.media && message.media.content_type == "image/gif" || message.media.content_type == "image/jpg" || message.media.content_type == "image/jpeg" || message.media.content_type == "image/png" %>
         <%= image_tag message.media.url, class: "image" %>
       <% elsif message.media && message.media.content_type == "application/pdf" || message.media.content_type == "application/msword" || message.media.content_type == "text/plain" %>
@@ -31,7 +31,9 @@
         <em>- <%= message.sender.first_name %></em>
         <%= button_to 'Delete', kit_post_path(message.kit.id, message.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
+
   <% end %>
+
+  </div>
 <% end %>
 

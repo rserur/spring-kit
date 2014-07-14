@@ -22,7 +22,7 @@
     <% else %>
         <h1>
           <span class="title">
-            SpringKit
+            <a href="/">SpringKit</a>
           </span>
         </h1>
     <% end %>
@@ -44,6 +44,22 @@
                   <i class="fa fa-database"></i>
                   <%= collection %>
                 </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+       <% if @messages && !current_user.practitioner? %>
+        <div class="messages">
+          <h1 class="logo">
+            Messages
+          </h1>
+          <ul>
+            <% @messages.each do |message| %>
+              <li>
+                <strong><%= message.title %></strong>
+                <em><%= message.created_at.to_formatted_s(:long)  %></em>
+                <%= sanitize message.body %> - <%= message.sender.first_name %>
               </li>
             <% end %>
           </ul>

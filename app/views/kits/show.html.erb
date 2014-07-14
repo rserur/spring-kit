@@ -17,24 +17,51 @@
 
 <% if @posts %>
   <% @posts.each do |post| %>
+
     <% if post.sender_id == post.kit.client_id %>
+
       <div class="post from-client">
+
     <% else %>
+
       <div class="post from-practitioner">
+
     <% end %>
-        <h4><%= post.title %></h4>
-        <h5>Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %></h5>
-        <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
-            <%= image_tag post.media.url(:medium), class: "image" %>
-        <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
-          <a href="<%= post.media.url %>">
-          <%= image_tag post.media.url(:doc) %>
+
+    <h4><%= post.title %></h4>
+
+    <em><%= post.created_at.to_formatted_s(:long) %></em>
+
+    <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
+
+        <%= image_tag post.media.url(:medium), class: "image" %>
+
+    <% elsif post.media && post.media.content_type == "application/pdf" || post.media.content_type == "application/msword" || post.media.content_type == "text/plain" %>
+
+        <a href="<%= post.media.url %>">
+
+    <%= image_tag post.media.url(:doc) %>
+
           Download</a>
-        <% end %>
+
+    <% end %>
+
         <%= sanitize post.body %>
+
         <em>- <%= post.sender.first_name %></em>
+
+        <% if !post.collection_list.empty? %>
+
+          <p>
+            Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %>
+          </p>
+
+        <% end %>
+
         <%= button_to 'Delete', kit_post_path(@kit.id, post.id),
     method: :delete, data: { confirm: 'Are you sure?' } %>
+
     </div>
+
   <% end %>
 <% end %>
