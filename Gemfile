@@ -66,4 +66,4 @@ gem 'wysiwyg-rails'
 
 gem 'acts-as-taggable-on'
 gem 'jquery-turbolinks'
-
+gem 'rails_12factor', group: :production
