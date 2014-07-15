@@ -68,3 +68,4 @@ gem 'acts-as-taggable-on'
 gem 'jquery-turbolinks'
 gem 'rails_12factor'
 gem 'rake'
+gem 'dotenv-rails', :groups => [:development, :test]
