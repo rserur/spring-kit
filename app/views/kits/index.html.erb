@@ -1,63 +1,66 @@
-<div class="post">
-  <h2>Kits</h2>
-  <ul>
-    <% if @kits %>
+<div class="top">
+  <div class="kits">
+    <h2>Kits</h2>
+    <ul>
+      <% if @kits %>
 
-      <% @kits.each do |kit| %>
-        <li class="kit">
-          <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %><br>
-          <strong>Last Updated:</strong> <%= kit.last_updated %>
-          <%= link_to kit_path(kit.id),
-    method: :delete, data: { confirm: 'Are you sure you want to delete this kit?' } do %>
-          <i class="fa fa-times-circle"></i>
+        <% @kits.each do |kit| %>
+          <li class="kit">
+            <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>: <%= kit.client.last_name %>, <%= kit.client.first_name %></a>, <%= mail_to kit.client.email %><br>
+            <strong>Last Updated:</strong> <%= kit.last_updated %>
+            <%= link_to kit_path(kit.id),
+      method: :delete, data: { confirm: 'Are you sure you want to delete this kit?' } do %>
+            <i class="fa fa-times-circle"></i>
+          <% end %>
+          </li>
         <% end %>
-        </li>
-      <% end %>
 
-  <% end %>
-    <li class="kit new">
-      <%= link_to new_kit_path do %>
+      <% end %>
+    </ul>
+    <%= link_to new_kit_path do %>
+      <button>
         <i class="fa fa-cube"></i> Create Kit
-      <% end %>
-    </li>
-  </ul>
-</div>
-
-<% if @messages %>
-  <div class="post">
-  <h2>Messages</h2>
-
-  <% @messages.each do |message| %>
-    <div class="message">
-
-      <h4><%= message.title %></h4>
-      <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em>
-
-      <% if message.media && message.media.content_type == "image/gif" || message.media.content_type == "image/jpg" || message.media.content_type == "image/jpeg" || message.media.content_type == "image/png" %>
-
-        <%= image_tag message.media.url, class: "image" %>
-
-      <% elsif message.media && message.media.content_type == "application/pdf" || message.media.content_type == "application/msword" || message.media.content_type == "text/plain" %>
-
-          <a href="<%= message.media.url %>">
-
-            <%= image_tag message.media.url(:doc) %>
-          Download
-
-          </a>
-
-      <% end %>
-
-      <%= sanitize message.body %>
-
-      <em>- <%= message.sender.first_name %></em>
-
-      <%= link_to kit_post_path(message.kit.id, message.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="fa fa-times-circle"></i>
-      <% end %>
-
-    </div>
-  <% end %>
-
+      </button>
+    <% end %>
   </div>
-<% end %>
+
+  <div class="messages">
+
+    <h2>Messages</h2>
+
+    <% if @messages %>
+
+      <% @messages.each do |message| %>
+        <div class="message">
+
+          <h4><%= message.title %></h4>
+          <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em>
+
+          <% if message.media && message.media.content_type == "image/gif" || message.media.content_type == "image/jpg" || message.media.content_type == "image/jpeg" || message.media.content_type == "image/png" %>
+
+            <%= image_tag message.media.url, class: "image" %>
+
+          <% elsif message.media && message.media.content_type == "application/pdf" || message.media.content_type == "application/msword" || message.media.content_type == "text/plain" %>
+
+              <a href="<%= message.media.url %>">
+
+                <%= image_tag message.media.url(:doc) %>
+              Download
+
+              </a>
+
+          <% end %>
+
+          <%= sanitize message.body %>
+
+          <em>- <%= message.sender.first_name %></em>
+
+          <%= link_to kit_post_path(message.kit.id, message.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-times-circle"></i>
+          <% end %>
+
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>

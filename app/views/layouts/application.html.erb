@@ -10,7 +10,8 @@
   <div class="container">
 
     <header>
-      <% if current_user && @kit && !current_page?('/kits/new') %>
+
+      <% if current_user && @kit %>
         <h1>
           <span class="title">
             <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>
@@ -20,11 +21,16 @@
         </span>
         </h1>
         <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
+      <% elsif current_user && @kits %>
+        <h1>
+          <span class="title">
+            <a href="/">SpringKit: Practitioner View</a>
+          </span>
+        </h1>
       <% else %>
-          <h1>
+        <h1>
             <span class="title">
               <a href="/">SpringKit</a>
-            </span>
           </h1>
       <% end %>
     </header>
@@ -36,8 +42,9 @@
       <div class="alert"><%= alert %></div>
     <% end %>
 
-  <div class="top">
-    <% if current_user %>
+
+    <% if current_user && !@kits %>
+      <div class="top">
         <div class="collections">
           <h2 class="title">
             Collections
@@ -53,16 +60,17 @@
                 </li>
               <% end %>
             </ul>
+          <% elsif !@kit %>
+            No collections yet; kit pending activation.
           <% else %>
             No collections yet! Add a post to get started.
           <% end %>
       </div>
-
           <div class="messages">
             <h2 class="title">
               Messages
             </h2>
-          <% if @messages && !current_user.practitioner? %>
+          <% if @messages %>
             <ul>
               <% @messages.each do |message| %>
                 <li>
@@ -78,11 +86,8 @@
             </div>
         <% end %>
       </div>
-    <% else %>
-        <h1>Welcome to SpringKit!</h1>
-        </div>
     <% end %>
-  </body>
+
     <article>
       <%= yield %>
     </article>

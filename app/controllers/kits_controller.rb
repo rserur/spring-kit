@@ -10,9 +10,9 @@ class KitsController < ApplicationController
       flash[:alert] = "No clients found."
     end
   else
-    @kit = Kit.where(client_id: current_user.id)
+    @kit = Kit.find_by client_id: current_user.id
 
-    if !@kit.empty?
+    if @kit
       redirect_to kit_path(@kit.id)
     else
       redirect_to edit_user_registration_path

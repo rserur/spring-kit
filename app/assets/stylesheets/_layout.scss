@@ -65,7 +65,6 @@
 
     i {
       padding-right: 0.5em;
-      color: shade($sub-primary, 25);
     }
   }
 
@@ -77,7 +76,7 @@
     font-size: 1.5rem;
   }
 
-  .collections, .search-short, .search-long, .messages {
+  .collections, .search-short, .search-long, .messages, .kits {
 
     h2 {
 
@@ -97,12 +96,78 @@
 
   }
 
+  .kits {
+    @include span-columns(8 of 12);
+
+    li:first-of-type {
+      border-top: 5px solid shade($primary, 20);
+    }
+
+    li.kit {
+      border-left: 1px solid shade($primary, 20);
+      border-right: 1px solid shade($primary, 20);
+      border-bottom: 1px solid $primary;
+      background-color: tint($primary, 60);
+      padding: 1em 0.5em;
+
+      a {
+        font-weight: 700;
+        color: shade($sub-primary, 40);
+      }
+    }
+
+    button {
+
+      margin-top: 1em;
+
+      i a {
+        color: $light;
+      }
+
+    }
+  }
+
   .collections {
     @include span-columns(8 of 12);
   }
 
   .messages {
     @include span-columns(4 of 12);
+
+    div.message:first-of-type {
+      border-top: 5px solid shade($primary, 20);
+    }
+
+    .message {
+
+      border-left: 1px solid shade($primary, 20);
+      border-right: 1px solid shade($primary, 20);
+      border-bottom: 1px solid $primary;
+      background-color: tint($primary, 60);
+      padding: 1em 0.5em;
+
+      h4 {
+        color: $sub-primary;
+      }
+
+      a {
+
+        color: tint($primary, 60);
+
+        :hover {
+          color: $primary;
+        }
+
+       i {
+        float: right;
+        }
+      }
+
+      a {
+        font-weight: 700;
+        color: shade($sub-primary, 40);
+      }
+    }
   }
 
   .collections li {
@@ -188,26 +253,6 @@ article {
       @include fill-parent();
     }
 
-    li.kit {
-      border-bottom: 1px solid tint($primary, 70);
-      border-radius: 0.5em;
-
-      &.new {
-        background-color: tint($primary,35);
-        text-align: center;
-        padding: 0.5em;
-
-        a {
-          color: shade($primary, 40);
-          font-weight: 700;
-        }
-
-        :hover {
-          color: shade($primary, 70);
-        }
-      }
-    }
-
     position: relative;
 
     .post-buttons {
@@ -230,23 +275,6 @@ article {
 
       i {
         font-size: 2rem;
-      }
-    }
-
-    .message {
-      border-bottom: 1px solid tint($primary, 70);
-
-      a {
-
-        color: tint($primary, 60);
-
-        :hover {
-          color: $primary;
-        }
-
-       i {
-        float: right;
-        }
       }
     }
 
