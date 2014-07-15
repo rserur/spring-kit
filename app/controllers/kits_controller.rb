@@ -3,16 +3,21 @@ class KitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.practitioner?
-      @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
-      @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
-      if @kits.empty?
-        flash[:alert] = "No clients found."
-      end
-    else
-      @kit = Kit.find_or_create_by(client_id: current_user.id)
-      redirect_to kit_path(@kit.id)
+   if current_user.practitioner?
+    @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
+    @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
+    if @kits.empty?
+      flash[:alert] = "No clients found."
     end
+  else
+    @kit = Kit.where(client_id: current_user.id)
+
+    if !@kit.empty?
+      redirect_to kit_path(@kit.id)
+    else
+      redirect_to edit_user_registration_path
+    end
+  end
   end
 
   def show
@@ -49,6 +54,14 @@ class KitsController < ApplicationController
     else
       render :new, notice: 'Failed to created kit.'
     end
+  end
+
+  def destroy
+    @kit = Kit.find(params[:id])
+    @kit.destroy
+
+    flash[:notice] = 'Kit deleted.'
+    redirect_to kits_path
   end
 
   private

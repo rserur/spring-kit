@@ -10,7 +10,7 @@
   <div class="container">
 
     <header>
-      <% if current_user && @kit %>
+      <% if current_user && @kit && !current_page?('/kits/new') %>
         <h1>
           <span class="title">
             <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>

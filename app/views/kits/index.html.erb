@@ -5,12 +5,21 @@
 
       <% @kits.each do |kit| %>
         <li class="kit">
-          <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %>
+          <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>:</a> <%= kit.client.last_name %>, <%= kit.client.first_name %>, <%= mail_to kit.client.email %><br>
           <strong>Last Updated:</strong> <%= kit.last_updated %>
+          <%= link_to kit_path(kit.id),
+    method: :delete, data: { confirm: 'Are you sure you want to delete this kit?' } do %>
+          <i class="fa fa-times-circle"></i>
+        <% end %>
         </li>
       <% end %>
 
-    <% end %>
+  <% end %>
+    <li class="kit new">
+      <%= link_to new_kit_path do %>
+        <i class="fa fa-cube"></i> Create Kit
+      <% end %>
+    </li>
   </ul>
 </div>
 

@@ -190,6 +190,22 @@ article {
 
     li.kit {
       border-bottom: 1px solid tint($primary, 70);
+      border-radius: 0.5em;
+
+      &.new {
+        background-color: tint($primary,35);
+        text-align: center;
+        padding: 0.5em;
+
+        a {
+          color: shade($primary, 40);
+          font-weight: 700;
+        }
+
+        :hover {
+          color: shade($primary, 70);
+        }
+      }
     }
 
     position: relative;
