@@ -31,12 +31,8 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
-    if @message && !@messages.empty?
-      @messages = Post.where("message = ? AND recipient_id = ?", true,
-                              current_user.id)
-    else
-      @messages = nil
-    end
+    @message = Post.where("message = ? AND recipient_id = ?", true,
+                              current_user.id).last
 
     @collections = @kit.owned_tags
   end

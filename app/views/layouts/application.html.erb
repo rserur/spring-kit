@@ -68,17 +68,15 @@
       </div>
           <div class="messages">
             <h2 class="title">
-              Messages
+              Latest Message
             </h2>
-          <% if @messages %>
+          <% if @message %>
             <ul>
-              <% @messages.each do |message| %>
                 <li>
-                  <strong><%= message.title %></strong>
-                  <em><%= message.created_at.to_formatted_s(:long)  %></em>
-                  <%= sanitize message.body %> - <%= message.sender.first_name %>
+                  <strong><%= @message.title %></strong>
+                  <em><%= @message.created_at.to_formatted_s(:long)  %></em>
+                  <%= sanitize @message.body %> - <%= @message.sender.first_name %>
                 </li>
-              <% end %>
             </ul>
           </div>
           <% else %>
