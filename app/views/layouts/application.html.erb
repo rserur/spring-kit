@@ -70,12 +70,12 @@
             <h2 class="title">
               Latest Message
             </h2>
-          <% if @message %>
+          <% if @msg %>
             <ul>
                 <li>
-                  <strong><%= @message.title %></strong>
-                  <em><%= @message.created_at.to_formatted_s(:long)  %></em>
-                  <%= sanitize @message.body %> - <%= @message.sender.first_name %>
+                  <strong><%= @msg.title %></strong>
+                  <em><%= @msg.created_at.to_formatted_s(:long)  %></em>
+                  <%= sanitize @msg.body %> - <%= @msg.sender.first_name %>
                 </li>
             </ul>
           </div>

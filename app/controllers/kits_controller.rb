@@ -4,13 +4,13 @@ class KitsController < ApplicationController
 
   def index
     if current_user.practitioner?
-      @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
-      @messages = Post.where("message = true AND recipient_id = ?", current_user.id)
+      @kits = Kit.includes(:client).where("practitioner_id = ?", current_user)
+      @msgs = Post.where("message = true AND recipient_id = ?", current_user)
       if @kits.empty?
         flash[:alert] = "No clients found."
       end
     else
-      @kit = Kit.find_by client_id: current_user.id
+      @kit = Kit.find_by client_id: current_user
       if @kit
         redirect_to kit_path(@kit.id)
       else
@@ -30,16 +30,16 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
-    @message = Post.where("message = true AND recipient_id = ?", current_user).last
+    @msg = Post.where("message = true AND recipient_id = ?", current_user).last
 
     @collections = @kit.owned_tags
   end
 
   def new
     @kit = Kit.new
-    @current_organization = current_user.organization_id
+    @current_org = current_user.organization_id
 
-    @clients = User.where(organization_id: @current_organization, role: 'client')
+    @clients = User.where(organization_id: @current_org, role: 'client')
   end
 
   def create

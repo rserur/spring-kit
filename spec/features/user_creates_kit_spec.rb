@@ -13,11 +13,10 @@ feature "user adds post to kit", %q(
 
   scenario "CCT creates a kit for current client" do
 
-    practitioner = FactoryGirl.create(:practitioner)
-    client = FactoryGirl.create(:client,
-      organization_id: practitioner.organization_id)
+    cct = FactoryGirl.create(:practitioner)
+    client = FactoryGirl.create(:client, organization_id: cct.organization_id)
 
-    sign_in_as(practitioner)
+    sign_in_as(cct)
 
     visit new_kit_path
     select client.first_name, from: 'kit[client_id]'
@@ -25,7 +24,7 @@ feature "user adds post to kit", %q(
     click_on "Create Kit"
 
     expect(page).to have_content "Kit successfully created."
-    expect(page).to have_content "Owner: #{client.first_name} #{client.last_name}"
+    expect(page).to have_content "Owner: #{client.first_name}"
 
   end
 
