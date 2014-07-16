@@ -115,6 +115,10 @@
         font-weight: 700;
         color: shade($sub-primary, 40);
       }
+
+      i {
+        float: right;
+      }
     }
 
     button {
@@ -256,29 +260,79 @@ article {
 
     position: relative;
 
-    .post-buttons {
+    &.from-client {
 
-      position: absolute;
-      bottom: 1em;
-      right: 1em;
+      .post-head {
 
-      input {
-        float: right;
-      }
+        h4 {
+          @include span-columns(9);
+          font-size: 1.2rem;
+        }
+        .post-buttons {
 
-      a {
-        color: tint($primary, 40);
+          @include span-columns(3);
 
-        :hover {
-          color: $primary;
+          input {
+            float: right;
+          }
+
+          a {
+            color: tint($primary, 70);
+
+            :hover {
+              color: $primary;
+            }
+          }
+
+          i {
+            font-size: 1.8rem;
+          }
         }
       }
 
-      i {
-        font-size: 2rem;
+      .post-details {
+        color: $primary;
+        margin-bottom: 2.8rem;
       }
     }
 
+    &.from-practitioner {
+
+      .post-head {
+
+        h4 {
+          @include span-columns(9);
+          font-size: 1.2rem;
+        }
+        .post-buttons {
+
+          @include span-columns(3);
+
+          input {
+            float: right;
+          }
+
+          a {
+            color: tint($tertiary, 70);
+
+            :hover {
+              color: $tertiary;
+            }
+          }
+
+          i {
+            font-size: 1.8rem;
+          }
+        }
+
+        margin-bottom: 2.8rem;
+      }
+
+      .post-details {
+        color: $tertiary;
+        margin-bottom: 2.8rem;
+      }
+    }
   }
 
   .sign-up {

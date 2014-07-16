@@ -39,6 +39,8 @@ class KitsController < ApplicationController
 
   def new
     @kit = Kit.new
+
+    @clients = User.where(organization_id: current_user.organization_id, role: 'client')
   end
 
   def create

@@ -31,10 +31,22 @@
 
     <% end %>
 
-    <h4><%= post.title %></h4>
+    <div class="post-head">
+      <h4><%= post.title %></h4>
+      <div class="post-buttons">
+        <%= link_to edit_kit_post_path(post.kit.id, post.id) do %>
+          <i class="fa fa-pencil-square-o"></i>
+        <% end %>
 
-    <em><%= post.created_at.to_formatted_s(:long) %></em>
-
+        <%= link_to kit_post_path(post.kit.id, post.id),
+  method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+        <i class="fa fa-times-circle"></i>
+      <% end %>
+      </div>
+    </div>
+    <div class="post-details">
+      <em><%= post.created_at.to_formatted_s(:long) %></em>
+    </div>
     <% if post.media && post.media.content_type == "image/gif" || post.media.content_type == "image/jpg" || post.media.content_type == "image/jpeg" || post.media.content_type == "image/png" %>
 
         <%= image_tag post.media.url(:medium), class: "image" %>
@@ -61,16 +73,6 @@
 
         <% end %>
 
-        <div class="post-buttons">
-          <%= link_to edit_kit_post_path(post.kit.id, post.id) do %>
-            <i class="fa fa-pencil-square-o"></i>
-          <% end %>
-
-          <%= link_to kit_post_path(post.kit.id, post.id),
-    method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
-          <i class="fa fa-times-circle"></i>
-        <% end %>
-        </div>
 
     </div>
 

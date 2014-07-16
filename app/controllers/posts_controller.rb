@@ -37,7 +37,20 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    kit = @post.kit_id
+    @kit = Kit.find(params[:kit_id])
+
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:notice] = "Post edited!"
+      redirect_to kit_path(@post.kit)
+    else
+      flash[:error] = "Post could not be edited."
+      render action: 'edit'
+    end
   end
 
   def destroy
