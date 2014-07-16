@@ -38,7 +38,6 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @kit = Kit.find(params[:kit_id])
-
   end
 
   def update

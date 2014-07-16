@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature "user adds post to kit", %q{
+feature "user adds post to kit", %q(
     As a CCT
     I want to create a protected sharing space for each of my registered clients
     so each client has their own space
-} do
+) do
 
   # Acceptance Criteria
 
@@ -14,7 +14,8 @@ feature "user adds post to kit", %q{
   scenario "CCT creates a kit for current client" do
 
     practitioner = FactoryGirl.create(:practitioner)
-    client = FactoryGirl.create(:client, organization_id: practitioner.organization_id)
+    client = FactoryGirl.create(:client,
+      organization_id: practitioner.organization_id)
 
     sign_in_as(practitioner)
 
@@ -24,11 +25,11 @@ feature "user adds post to kit", %q{
     click_on "Create Kit"
 
     expect(page).to have_content "Kit successfully created."
-    expect(page).to have_content "Kit Owner: #{client.first_name} #{client.last_name}"
+    expect(page).to have_content "Owner: #{client.first_name} #{client.last_name}"
 
   end
 
-  scenario "CCT can't see a client that doesn't belong to the same organization as an option" do
+  scenario "CCT can't see a client outside of the organization" do
 
     practitioner = FactoryGirl.create(:practitioner)
     client = FactoryGirl.create(:client)

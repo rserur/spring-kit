@@ -3,21 +3,20 @@ class KitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-   if current_user.practitioner?
-    @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
-    @messages = Post.where("message = ? AND recipient_id = ?", true, current_user.id)
-    if @kits.empty?
-      flash[:alert] = "No clients found."
-    end
-  else
-    @kit = Kit.find_by client_id: current_user.id
-
-    if @kit
-      redirect_to kit_path(@kit.id)
+    if current_user.practitioner?
+      @kits = Kit.includes(:client).where("practitioner_id = ?", current_user.id)
+      @messages = Post.where("message = true AND recipient_id = ?", current_user.id)
+      if @kits.empty?
+        flash[:alert] = "No clients found."
+      end
     else
-      redirect_to edit_user_registration_path
+      @kit = Kit.find_by client_id: current_user.id
+      if @kit
+        redirect_to kit_path(@kit.id)
+      else
+        redirect_to edit_user_registration_path
+      end
     end
-  end
   end
 
   def show
@@ -31,16 +30,16 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
-    @message = Post.where("message = ? AND recipient_id = ?", true,
-                              current_user.id).last
+    @message = Post.where("message = true AND recipient_id = ?", current_user).last
 
     @collections = @kit.owned_tags
   end
 
   def new
     @kit = Kit.new
+    @current_organization = current_user.organization_id
 
-    @clients = User.where(organization_id: current_user.organization_id, role: 'client')
+    @clients = User.where(organization_id: @current_organization, role: 'client')
   end
 
   def create
