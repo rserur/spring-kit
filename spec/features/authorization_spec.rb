@@ -18,6 +18,6 @@ feature "user must be authorized to access kit actions", %q(
 
     sign_in_as(client)
 
-  expect { visit new_kit_path }.to raise_error(ActionController::RoutingError)
+    expect { visit new_kit_path }.to raise_error(ActionController::RoutingError)
   end
 end

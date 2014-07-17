@@ -25,8 +25,5 @@ feature "user edits post in kit", %q(
 
     expect(page).to_not have_content kit.client.first_name
     expect(page).to have_content "Kit deleted."
-
   end
-
-
 end
