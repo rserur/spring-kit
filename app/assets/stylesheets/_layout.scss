@@ -399,6 +399,10 @@ article {
     }
   }
 
+  .edit-user form {
+    @include span-columns(12);
+  }
+
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: left;
