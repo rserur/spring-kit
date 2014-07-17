@@ -1,6 +1,5 @@
 class KitsController < ApplicationController
-  before_action :authorize_user, only: [:new, :create]
-  before_action :authenticate_user!
+  before_action :authorize_user, only: [:new, :create, :delete]
 
   def index
     if current_user.practitioner?
@@ -68,8 +67,8 @@ class KitsController < ApplicationController
   end
 
   def authorize_user
-    unless user_signed_in? and current_user.practitioner?
-      raise ActionController:RoutingError.new('Not Found')
+    unless user_signed_in? && current_user.practitioner?
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 end
