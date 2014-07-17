@@ -49,7 +49,7 @@ class KitsController < ApplicationController
     if @kit.save
       redirect_to @kit, notice: 'Kit successfully created.'
     else
-      render :new, notice: 'Failed to created kit.'
+      redirect_to new_kit_path, notice: 'Failed to create kit. Does the client already have one?'
     end
   end
 

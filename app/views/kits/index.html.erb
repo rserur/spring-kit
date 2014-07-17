@@ -10,13 +10,11 @@
             <br>
             <strong>Last Updated:</strong>
             <%= kit.last_updated %>
-            <%= link_to kit_path(kit.id),
-      method: :delete, data: { confirm: 'Are you sure you want to delete this kit?' } do %>
             <br>
             <em><%= mail_to kit.client.email %></em>
-
-            <i class="fa fa-times-circle"></i>
-          <% end %>
+            <%= link_to kit_path(kit), id: "del-#{kit.id}", method: :delete do %>
+              <i class="fa fa-times-circle"> Delete Kit</i>
+            <% end %>
           </li>
         <% end %>
 

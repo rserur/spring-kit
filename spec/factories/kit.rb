@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :kit do
-    association :practitioner
-    association :client
+    association :practitioner, organization_id: 1
+    association :client, organization_id: 1
   end
 end

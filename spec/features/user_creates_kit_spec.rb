@@ -9,6 +9,7 @@ feature "user adds post to kit", %q(
   # Acceptance Criteria
 
   # * I can create a kit for any client registered with my organization
+  # * I cannot create a kit for a client if one already exists for them
   # * I cannot create a kit for any client registered outside of my organization
 
   scenario "CCT creates a kit for current client" do
@@ -25,6 +26,22 @@ feature "user adds post to kit", %q(
 
     expect(page).to have_content "Kit successfully created."
     expect(page).to have_content "Owner: #{client.first_name}"
+
+  end
+
+  scenario "CCT fails to create a kit if one already exists for client" do
+
+    kit = FactoryGirl.create(:kit)
+
+    sign_in_as(kit.practitioner)
+
+    visit new_kit_path
+
+    select kit.client.first_name, from: 'kit[client_id]'
+
+    click_on "Create Kit"
+
+    expect(page).to have_content "Failed to create kit."
 
   end
 

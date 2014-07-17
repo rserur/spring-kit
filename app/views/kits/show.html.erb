@@ -38,8 +38,8 @@
           <i class="fa fa-pencil-square-o"></i> Edit
         <% end %>
 
-        <%= link_to kit_post_path(post.kit.id, post.id),
-  method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+        <%= link_to kit_post_path(post.kit.id, post.id), id: "del-post-#{post.id}",
+  method: :delete do %>
         <i class="fa fa-times-circle"></i> Delete
       <% end %>
       </div>
