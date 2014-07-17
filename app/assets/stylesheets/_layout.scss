@@ -315,13 +315,15 @@ article {
         h4 {
           @include span-columns(9);
           font-size: 1.2rem;
+          float: right;
         }
         .post-buttons {
 
           @include span-columns(3);
+          text-align: left;
 
           input {
-            float: right;
+
           }
 
           a {
