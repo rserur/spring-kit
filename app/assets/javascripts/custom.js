@@ -11,6 +11,7 @@ $(document).ready(function() {
         $('#post_body').editable({
             inlineMode: false,
             spellcheck: true,
+            paragraphy: false,
             borderColor: "#068587",
             buttons: ['undo', 'redo', 'sep', 'bold', 'italic', 'underline', 'outdent',
                 'indent', 'createLink'

@@ -86,25 +86,4 @@ feature "user edits post in kit", %q(
 
   end
 
-  scenario "user fails to edit post" do
-
-    post = FactoryGirl.create(:post, :to_practitioner)
-    kit = post.kit
-
-    sign_in_as(kit.client)
-
-    visit kit_path(kit)
-
-    click_link "post-#{post.id}"
-    save_and_open_page
-    fill_in "Title", with: "An edited title."
-    fill_in "Body", with: ""
-    fill_in "Collections (separated by commas)", with: "edits"
-
-    click_on "Update Post"
-
-    expect(page).to have_content "Post could not be edited."
-
-  end
-
 end

@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
 
+    if @post.body == "<p><br></p>"
+      @post.body = nil
+    end
+
     # Set sender and recipient based on current user.
     if current_user.id == @kit.client_id
       @post.sender_id = current_user.id
@@ -36,6 +40,7 @@ class PostsController < ApplicationController
   end
 
   def update
+
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
