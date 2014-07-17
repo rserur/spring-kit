@@ -248,6 +248,15 @@ article {
     -moz-box-shadow:    10px 10px 0px 0px tint($primary, 70);
     box-shadow:         10px 10px 0px 0px tint($primary, 70);
 
+    &.info {
+      h4 {
+        margin-bottom: 0.5rem;
+      }
+      p {
+        font-size: 1.05rem;
+        color: shade($primary, 55);
+      }
+    }
     &:hover {
       @include transition (all 0.2s ease-in-out);
       color: lighten($base-font-color,20);
@@ -338,6 +347,7 @@ article {
   .sign-up {
     background-color: tint($tertiary, 95);
     border: 1px solid tint($tertiary, 65);
+    color: shade($tertiary, 35);
 
     input, select {
 
@@ -349,6 +359,7 @@ article {
     }
     h4 {
       color: $tertiary;
+      margin-bottom: 0.5rem;
     }
   }
 
