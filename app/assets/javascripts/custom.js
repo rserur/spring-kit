@@ -18,6 +18,12 @@ $(document).ready(function() {
             ]
         })
     });
+
+    $('[class*="blank"]').click(function() {
+        $("#add").slideToggle(1000, 'easeOutBounce');
+        $(".blank1").toggle();
+    });
+
 });
 
 $('div[data-type="background"]').each(function() {

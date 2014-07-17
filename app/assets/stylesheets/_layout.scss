@@ -234,6 +234,7 @@ article {
     }
   }
 
+
   .post {
     width: 33.3%;
     min-height: 200px;
@@ -453,6 +454,18 @@ nav {
     }
   }
 
+}
+
+.blank1, .blank2, .blank3 {
+  color: tint($primary, 70);
+  font-size: 15rem;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+
+  :hover {
+    color: $tertiary;
+  }
 }
 
 nav a {
