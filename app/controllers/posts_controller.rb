@@ -1,10 +1,5 @@
 class PostsController < ApplicationController
 
-  def new
-    @kit = Kit.find(params[:kit_id])
-    @post = Post.new
-  end
-
   def create
     @kit = Kit.find(params[:kit_id])
 
