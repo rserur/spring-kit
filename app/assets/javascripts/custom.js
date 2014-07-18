@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-    fillPosts();
-
-    $("#add").hide();
+    if ($("#add").length) {
+        $("#add").hide();
+        fillPosts();
+    }
 
     $("#plus").click(function() {
         $(".blank").last().toggle();
