@@ -25,9 +25,11 @@ class PostsController < ApplicationController
           message = ActionController::Base.helpers.strip_tags(@post.body)
           message += " - SpringKit Message from " + @post.recipient.full_name
           send_text_message(@post.recipient.phone, message)
-          flash[:notice] = "Post sent to #{@post.recipient.role} as text message and added to kit."
+          flash[:notice] = "Post sent to #{@post.recipient.role} as text message
+          and added to kit."
         else
-          flash[:alert] = "Post NOT sent as message. Recipient account has no phone number."
+          flash[:alert] = "Post NOT sent as message. Recipient account has no
+          phone number."
           flash[:notice] = "Post added to kit."
         end
       else

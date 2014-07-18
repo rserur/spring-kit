@@ -111,7 +111,8 @@ feature "user adds post to kit", %q{
 
     expect(page).to have_content "reminder"
     expect(page).to have_content "worksheet"
-    expect(page).to have_content "Post NOT sent as message. Recipient account has no phone number."
+    expect(page).to have_content "Post NOT sent as message.
+    Recipient account has no phone number."
   end
 
   scenario "Post invalid message" do

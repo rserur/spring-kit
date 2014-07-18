@@ -16,7 +16,8 @@ FactoryGirl.define do
     end
 
     trait :collected do
-      after(:create) { |post| post.update_attributes(collection_list: 'my collection') }
+      after(:create) { |post| post.update_attributes(collection_list:
+      'my collection') }
     end
   end
 end
