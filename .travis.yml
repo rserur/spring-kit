@@ -4,6 +4,7 @@ rvm:
 before_script:
   - psql -c 'create database spring_kit_test;' -U postgres
 env:
-  - secure: "XK1dMaCX0iqdtrw82D1NQj7drtg6hYzT+n6Bv305HnTq2T3ScdhY1U89P5IE8a9roeJPHmY4odRfv4SFDpYskmE1TfezMuX1f6rJgIhNeyiErzgN+GK5YnLDKgQGHYX50xovFjjSbuGYYi6mGxm0Sh1xOJKqHN/PnWWvzTTB6N0="
-  - secure: "O1nqEVtv1Unu9gxvjNpOM2hgcQoBXmh4jB41ZNzUCvnv6/yM9RAZwanB7MiXGxnuzZThhdpF9LoSqwJ72SMn1zwdjFvo9LZkEi3yArkWfKJ3Gz6tLnzN/EPti69eQ6eY3ax9tk3W13PrN/6xCV1fwojmUF8AYrHisAmzAFzgRaQ="
-  - secure: "T3c5nOk9JP6UtT0Md1PHSnyegX4C/KzP9iQ21vNj2PGZqTkyqLkRkHRRCobxU9ZBPhrxpKICZ5q3dFyCsBWTRdSO7bPPSuisv7I1iVCCY2qxvX+Mn4FMHds/RC25ryHwzvI2Dx/ucmKQboX/YWN3ZAZwYFiQ3oy4XWoWqJTG+20="
+  global:
+    - secure: "XK1dMaCX0iqdtrw82D1NQj7drtg6hYzT+n6Bv305HnTq2T3ScdhY1U89P5IE8a9roeJPHmY4odRfv4SFDpYskmE1TfezMuX1f6rJgIhNeyiErzgN+GK5YnLDKgQGHYX50xovFjjSbuGYYi6mGxm0Sh1xOJKqHN/PnWWvzTTB6N0=",
+    - secure: "O1nqEVtv1Unu9gxvjNpOM2hgcQoBXmh4jB41ZNzUCvnv6/yM9RAZwanB7MiXGxnuzZThhdpF9LoSqwJ72SMn1zwdjFvo9LZkEi3yArkWfKJ3Gz6tLnzN/EPti69eQ6eY3ax9tk3W13PrN/6xCV1fwojmUF8AYrHisAmzAFzgRaQ=",
+    - secure: "T3c5nOk9JP6UtT0Md1PHSnyegX4C/KzP9iQ21vNj2PGZqTkyqLkRkHRRCobxU9ZBPhrxpKICZ5q3dFyCsBWTRdSO7bPPSuisv7I1iVCCY2qxvX+Mn4FMHds/RC25ryHwzvI2Dx/ucmKQboX/YWN3ZAZwYFiQ3oy4XWoWqJTG+20="
