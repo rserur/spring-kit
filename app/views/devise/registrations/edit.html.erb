@@ -6,7 +6,11 @@
 
     <div class="form-inputs">
       <%= f.input :email, required: true, autofocus: true %>
-
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
+      <%= f.input :phone %>
+      <%= f.association :organization, required: true %>
+      <%= f.input :role, collection: ["client", "practitioner"] %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
