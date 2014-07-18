@@ -1,7 +1,11 @@
 $(document).ready(function() {
+
+    fillPosts();
+
     $("#add").hide();
 
     $("#plus").click(function() {
+        $(".blank").last().toggle();
         $("#add").slideToggle(1000, 'easeOutBounce');
     });
 
@@ -19,11 +23,16 @@ $(document).ready(function() {
         })
     });
 
-    $('[class*="blank"]').click(function() {
+    $(".blank").click(function() {
+        $(".blank").last().toggle();
         $("#add").slideToggle(1000, 'easeOutBounce');
-        $(".blank1").toggle();
     });
 
+    function fillPosts() {
+        while (!(($(".post").length) % 3 == 1)) {
+            $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
+        }
+    }
 });
 
 $('div[data-type="background"]').each(function() {

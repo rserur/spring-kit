@@ -18,13 +18,7 @@
 
 </div>
 
-<% if @posts.empty? %>
-  <% (1..3).each do |i| %>
-    <div class="post blank<%= "#{i}" %>">
-      <i class="fa fa-cube"></i>
-    </div>
-  <% end %>
-<% elsif @posts %>
+<% if @posts %>
   <% @posts.each do |post| %>
 
     <% if post.sender_id == post.kit.client_id %>
