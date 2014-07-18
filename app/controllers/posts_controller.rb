@@ -25,7 +25,7 @@ class PostsController < ApplicationController
       if @post.message
         number = @post.recipient.phone
 
-        if number != nil
+        if !number.empty?
           message = ActionController::Base.helpers.strip_tags(@post.body)
           message += " - SpringKit Message from " + @post.recipient.full_name
           send_text_message(@post.recipient.phone, message)
