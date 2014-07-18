@@ -66,5 +66,8 @@ gem 'wysiwyg-rails'
 
 gem 'acts-as-taggable-on'
 gem 'jquery-turbolinks'
+
 gem 'aws-sdk'
+gem 'rails_12factor'
+gem 'rake'
 
