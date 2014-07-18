@@ -55,7 +55,7 @@ feature "user adds post to kit", %q{
     expect(page).to have_content "notes"
   end
 
-  scenario "Client creates post and sends as text message" do
+  scenario "Client creates post and sends as text message", :vcr do
 
     kit = FactoryGirl.create(:kit)
 
@@ -74,7 +74,7 @@ feature "user adds post to kit", %q{
     expect(page).to have_content "Post sent to practitioner as text message"
   end
 
-  scenario "Practitioner creates post as text message" do
+  scenario "Practitioner creates post as text message", :vcr do
 
     kit = FactoryGirl.create(:kit)
 
