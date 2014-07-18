@@ -70,4 +70,4 @@ gem 'jquery-turbolinks'
 gem 'aws-sdk'
 gem 'rails_12factor'
 gem 'rake'
-
+gem 'twilio-ruby'
