@@ -128,4 +128,16 @@ feature "user adds post to kit", %q{
 
   end
 
+    scenario "User can see collections in kit" do
+
+    post = FactoryGirl.create(:post, :to_client, :collected)
+
+    sign_in_as(post.sender)
+
+    visit kit_path(post.kit)
+
+    expect(page).to have_content "my collection"
+
+  end
+
 end

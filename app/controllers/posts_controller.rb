@@ -5,10 +5,6 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
 
-    if @post.body == "<p><br></p>"
-      @post.body = nil
-    end
-
     # Set sender and recipient based on current user.
     if current_user.id == @kit.client_id
       @post.sender_id = current_user.id
@@ -56,9 +52,6 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       flash[:notice] = "Post edited!"
       redirect_to kit_path(@post.kit)
-    else
-      flash[:error] = "Post could not be edited."
-      render action: 'edit'
     end
   end
 
