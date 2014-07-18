@@ -71,7 +71,7 @@ feature "user adds post to kit", %q{
 
     expect(page).to have_content "A question"
     expect(page).to have_content "appointment"
-    expect(page).to have_content "Post sent to practitioner as text message and added to kit."
+    expect(page).to have_content "Post sent to practitioner as text message"
   end
 
   scenario "Practitioner creates post as text message" do
@@ -90,7 +90,7 @@ feature "user adds post to kit", %q{
 
     expect(page).to have_content "reminder"
     expect(page).to have_content "worksheet"
-    expect(page).to have_content "Post sent to client as text message and added to kit."
+    expect(page).to have_content "Post sent to client as text message"
   end
 
   scenario "Sender fails to send text message if no phone number" do
@@ -128,7 +128,7 @@ feature "user adds post to kit", %q{
 
   end
 
-    scenario "User can see collections in kit" do
+  scenario "User can see collections in kit" do
 
     post = FactoryGirl.create(:post, :to_client, :collected)
 
@@ -137,7 +137,6 @@ feature "user adds post to kit", %q{
     visit kit_path(post.kit)
 
     expect(page).to have_content "my collection"
-
   end
 
 end

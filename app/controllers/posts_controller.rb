@@ -80,12 +80,12 @@ class PostsController < ApplicationController
     )
   end
 
-private
+  private
 
-  def post_params
-    params.require(:post).permit(
-      :title, :body, :collection_list, :media, :message
-    )
-  end
+    def post_params
+      params.require(:post).permit(
+        :title, :body, :collection_list, :media, :message
+      )
+    end
 
 end
