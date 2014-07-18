@@ -71,7 +71,7 @@ feature "user adds post to kit", %q{
 
     expect(page).to have_content "A question"
     expect(page).to have_content "appointment"
-    expect(page).to have_content "Post sent to practitioner as message and added to kit."
+    expect(page).to have_content "Post sent to practitioner as text message and added to kit."
   end
 
   scenario "Practitioner creates post as message" do
@@ -84,13 +84,13 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "Just a reminder"
     fill_in "Body", with: "Please bring the worksheet if you can."
-    check "Post and send as message?"
+    check "Post and send body as text message?"
 
     click_on "Create Post"
 
     expect(page).to have_content "reminder"
     expect(page).to have_content "worksheet"
-    expect(page).to have_content "Post sent to client as message and added to kit."
+    expect(page).to have_content "Post sent to client as text message and added to kit."
   end
 
   scenario "Post invalid message" do

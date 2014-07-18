@@ -7,6 +7,7 @@ FactoryGirl.define do
     email { Faker::Internet.safe_email }
     password { 'password123'}
     notes { Faker::Lorem.paragraph }
+    phone "9412685217"
 
     factory :practitioner do
       role 'practitioner'
