@@ -55,7 +55,7 @@ feature "user adds post to kit", %q{
     expect(page).to have_content "notes"
   end
 
-  scenario "Client creates post as message" do
+  scenario "Client creates post and sends as text message" do
 
     kit = FactoryGirl.create(:kit)
 
@@ -65,7 +65,7 @@ feature "user adds post to kit", %q{
 
     fill_in "Title", with: "A question"
     fill_in "Body", with: "Do we have an appointment on Monday?"
-    check "Post and send as message?"
+    check "Post and send body as text message?"
 
     click_on "Create Post"
 

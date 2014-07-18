@@ -6,7 +6,7 @@
 
     <%= f.input :title %>
     <%= f.input :body, required: true, rows: 5 %>
-     <%= f.input :message, as: :boolean, inline_label: true, label: 'Post and send as message?' %>
+     <%= f.input :message, as: :boolean, inline_label: true, label: 'Post and send body as text message?' %>
 
     <%= f.input :collection_list, value: @post.all_collections_list, label: 'Collections (separated by commas)' %>
 

@@ -21,8 +21,19 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
+
       if @post.message
-        flash[:notice] = "Post sent to #{@post.recipient.role} as message and added to kit."
+        number = @post.recipient.phone
+
+        if number != nil
+          message = ActionController::Base.helpers.strip_tags(@post.body)
+          message += " - SpringKit Message from " + @post.recipient.full_name
+          send_text_message(@post.recipient.phone, message)
+          flash[:notice] = "Post sent to #{@post.recipient.role} as text message and added to kit."
+        else
+          flash[:alert] = "Post NOT sent as message. Recipient account has no phone number."
+          flash[:notice] = "Post added to kit."
+        end
       else
         flash[:notice] = 'Post added to kit.'
       end
@@ -60,21 +71,21 @@ class PostsController < ApplicationController
     redirect_to kit_path(kit)
   end
 
-  # def send_text_message
-  #   number_to_send_to = params[:recipient_number]
+  def send_text_message(recipient, message)
+    number_to_send_to = recipient
 
-  #   twilio_sid = ENV['TWILIO_SID']
-  #   twilio_token = ENV['TWILIO_TOKEN']
-  #   twilio_phone_number = ENV['TWILIO_PHONE_NUMBER']
+    twilio_sid = ENV['TWILIO_SID']
+    twilio_token = ENV['TWILIO_TOKEN']
+    twilio_phone_number = ENV['TWILIO_PHONE_NUMBER']
 
-  #   @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-  #   @twilio_client.account.sms.messages.create(
-  #     :from => "+1#{twilio_phone_number}",
-  #     :to => number_to_send_to,
-  #     :body => "This is an message. It gets sent to #{number_to_send_to}"
-  #   )
-  # end
+    @twilio_client.account.sms.messages.create(
+      from: "+1#{twilio_phone_number}",
+      to: number_to_send_to,
+      body: message
+    )
+  end
 
 private
 
