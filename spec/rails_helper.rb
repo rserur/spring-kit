@@ -49,6 +49,6 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.default_cassette_options = { record: :new_episodes }
   c.filter_sensitive_data('<TWILIO_SID>') { ENV['TWILIO_SID'] }
-  c.filter_sensitive_data('<TWILIO_TOKEN>') {ENV['TWILIO_TOKEN'] }
-  c.filter_sensitive_data('<TWILIO_PHONE_NUMBER>') {ENV['TWILIO_PHONE_NUMBER'] }
+  c.filter_sensitive_data('<TWILIO_TOKEN>') { ENV['TWILIO_TOKEN'] }
+  c.filter_sensitive_data('<TWILIO_PHONE_NUMBER>') { ENV['TWILIO_PHONE_NUMBER'] }
 end

@@ -31,11 +31,9 @@
 
     <h2>Messages</h2>
 
-    <% if @msgs %>
-
+    <% if !@msgs.empty? %>
+      <div class="message">
       <% @msgs.each do |message| %>
-        <div class="message">
-
           <h4><%= message.title %></h4>
           <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em>
 
@@ -61,9 +59,11 @@
           <%= link_to kit_post_path(message.kit.id, message.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
             <i class="fa fa-times-circle"></i>
           <% end %>
-
-        </div>
       <% end %>
 
+    <% else %>
+      <p>No messages.</p>
+
     <% end %>
+    </div>
   </div>
