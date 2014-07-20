@@ -47,6 +47,10 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @kit = Kit.find(params[:kit_id])
+
+    @msg = Post.where("message = true AND recipient_id = ?", @kit.client_id).last
+
+    @collections = @kit.owned_tags
   end
 
   def update

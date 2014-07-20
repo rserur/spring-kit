@@ -23,7 +23,7 @@ class KitsController < ApplicationController
 
     if params[:collection]
       @kit = Kit.find(params[:kit_id])
-      @posts = @kit.posts.order(created_at: :desc).tagged_with(params[:collection])
+      @posts = @kit.posts.order(created_at: :desc).tagged_with(params[:collection]).uniq
     else
       @kit = Kit.find(params[:id])
       @posts = @kit.posts.order(created_at: :desc)

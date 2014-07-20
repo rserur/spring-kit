@@ -463,7 +463,7 @@ nav {
 .blank {
   color: tint($primary, 70);
   font-size: 15rem;
-  height: 2em;
+  min-height: 2em;
   line-height: 2em;
   text-align: center;
 
