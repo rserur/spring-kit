@@ -46,13 +46,14 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'valid_attribute'
-  gem 'faker'
-
   gem 'quiet_assets'
+  gem 'faker'
 end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'webmock'
+  gem 'vcr'
 end
 
 gem 'simple_form'
@@ -68,6 +69,7 @@ gem 'acts-as-taggable-on'
 gem 'jquery-turbolinks'
 
 gem 'aws-sdk'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'rake'
-
+gem 'twilio-ruby'
+gem 'nokogiri'

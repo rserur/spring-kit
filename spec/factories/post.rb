@@ -14,5 +14,10 @@ FactoryGirl.define do
       sender_id { kit.practitioner_id }
       recipient_id { kit.client_id }
     end
+
+    trait :collected do
+      after(:create) { |post| post.update_attributes(collection_list:
+      'my collection') }
+    end
   end
 end

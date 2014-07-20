@@ -16,10 +16,11 @@
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :first_name, required: true %>
     <%= f.input :last_name, required: true %>
+    <%= f.input :phone %>
     <%= f.association :organization, required: true %>
+    <%= f.input :role, collection: ["client", "practitioner"] %>
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
-    <%= f.input :role, collection: ["client", "practitioner"] %>
   </div>
 
   <div class="form-actions">

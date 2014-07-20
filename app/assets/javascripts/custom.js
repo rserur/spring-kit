@@ -1,12 +1,19 @@
 $(document).ready(function() {
 
-    fillPosts();
+    if ($("#add").length) {
+        $("#add").hide();
+        fillPosts();
 
-    $("#add").hide();
+        if (($(".post").length) == 1) {
+            $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
+            $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
+            $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
+        }
+    }
 
     $("#plus").click(function() {
         $(".blank").last().toggle();
-        $("#add").slideToggle(1000, 'easeOutBounce');
+        $("#add").toggle(1000, 'easeOutQuart');
     });
 
     $(".notice, .alert").delay(2000).hide(1000, 'easeOutBounce');
@@ -25,10 +32,11 @@ $(document).ready(function() {
 
     $(".blank").click(function() {
         $(".blank").last().toggle();
-        $("#add").slideToggle(1000, 'easeOutBounce');
+        $("#add").toggle(1000, 'easeOutQuart');
     });
 
     function fillPosts() {
+
         while (!(($(".post").length) % 3 == 1)) {
             $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
         }

@@ -20,7 +20,7 @@
            <i class="fa fa-plus-circle"></i> Add
         </span>
         </h1>
-        <em>Kit Owner: <%= @kit.client.first_name %> <%= @kit.client.last_name %></em>
+        <em>Kit Owner: <%= @kit.client.full_name %></em>
       <% elsif current_user && @kits %>
         <h1>
           <span class="title">

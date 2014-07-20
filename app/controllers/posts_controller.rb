@@ -5,10 +5,6 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
 
-    if @post.body == "<p><br></p>"
-      @post.body = nil
-    end
-
     # Set sender and recipient based on current user.
     if current_user.id == @kit.client_id
       @post.sender_id = current_user.id
@@ -21,8 +17,22 @@ class PostsController < ApplicationController
     @post.kit_id = @kit.id
 
     if @post.save
+
       if @post.message
-        flash[:notice] = "Post sent to #{@post.recipient.role} as message and added to kit."
+        number = @post.recipient.phone
+
+        if !number.empty?
+          message = Nokogiri::HTML(@post.body)
+          message = message.xpath("//text()").to_s
+          message += " - SpringKit Message from " + @post.recipient.full_name
+          send_text_message(@post.recipient.phone, message)
+          flash[:notice] = "Post sent to #{@post.recipient.role} as text message
+          and added to kit."
+        else
+          flash[:alert] = "Post NOT sent as message. Recipient account has no
+          phone number."
+          flash[:notice] = "Post added to kit."
+        end
       else
         flash[:notice] = 'Post added to kit.'
       end
@@ -45,9 +55,6 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       flash[:notice] = "Post edited!"
       redirect_to kit_path(@post.kit)
-    else
-      flash[:error] = "Post could not be edited."
-      render action: 'edit'
     end
   end
 
@@ -60,10 +67,27 @@ class PostsController < ApplicationController
     redirect_to kit_path(kit)
   end
 
-  def post_params
-    params.require(:post).permit(
-      :title, :body, :collection_list, :media, :message
+  def send_text_message(recipient, message)
+    number_to_send_to = recipient
+
+    twilio_sid = ENV['TWILIO_SID']
+    twilio_token = ENV['TWILIO_TOKEN']
+    twilio_phone_number = ENV['TWILIO_PHONE_NUMBER']
+
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    @twilio_client.account.sms.messages.create(
+      from: "+1#{twilio_phone_number}",
+      to: number_to_send_to,
+      body: message
     )
   end
 
+  private
+
+    def post_params
+      params.require(:post).permit(
+        :title, :body, :collection_list, :media, :message
+      )
+    end
 end

@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<TWILIO_SID>:<TWILIO_TOKEN>@api.twilio.com/2010-04-01/Accounts/<TWILIO_SID>/SMS/Messages.json
+    body:
+      encoding: US-ASCII
+      string: From=%2B1<TWILIO_PHONE_NUMBER>&To=9412685217&Body=Please+bring+the+worksheet+if+you+can.+-+SpringKit+Message+from+Adonis+Windler
+    headers:
+      Accept:
+      - application/json
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - twilio-ruby/3.11.5 (true/x86_64-darwin13.1.0 2.0.0-p451)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Sun, 20 Jul 2014 19:36:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '609'
+      Connection:
+      - close
+      Last-Modified:
+      - Sun, 20 Jul 2014 19:36:23 +0000
+      Etag:
+      - f2bf8eab56b1e81df665b62b15ff51fd
+      X-Powered-By:
+      - AT-5000
+      X-Shenanigans:
+      - none
+    body:
+      encoding: UTF-8
+      string: '{"sid": "SMf78713a9563c746e57203ec17a5795cf", "date_created": "Sun,
+        20 Jul 2014 19:36:23 +0000", "date_updated": "Sun, 20 Jul 2014 19:36:23 +0000",
+        "date_sent": null, "account_sid": "<TWILIO_SID>", "to": "+19412685217", "from":
+        "+1<TWILIO_PHONE_NUMBER>", "body": "Please bring the worksheet if you can.
+        - SpringKit Message from Adonis Windler", "status": "queued", "direction":
+        "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit":
+        "USD", "uri": "/2010-04-01/Accounts/<TWILIO_SID>/SMS/Messages/SMf78713a9563c746e57203ec17a5795cf.json",
+        "num_segments": "1"}'
+    http_version: 
+  recorded_at: Sun, 20 Jul 2014 19:36:23 GMT
+recorded_with: VCR 2.9.2

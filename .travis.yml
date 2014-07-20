@@ -1,5 +1,13 @@
 language: ruby
 rvm:
-  - 2.1.0
+- 2.1.0
 before_script:
-  - psql -c 'create database spring_kit_test;' -U postgres
+- psql -c 'create database spring_kit_test;' -U postgres
+env:
+  global:
+  - secure: m5+QXrdtAkjY1Sx9G849Rsw56LvM+CqYZRtlfztN7eWhZ3NVAU2tj4C7+KTfAcuKOAlvw64nUP5ybSehFKkYjAw1Xs+H7El5MUsD0qEfXNIidRAcEU3ou0b1V3ISstFUQVfGWbHm9zGDMMWiEahMrhPWme0OJbceCa5uckpQfiQ=
+  - secure: gVRCo2oe0ptfwTp5diakO3uUHuqCfm2obliGt6vuOTROrNNlQOzwWT1/YHFOzpvjSY8WDZfWbUwz9tzGwY447P/3x1JUAcldYITgAaA/9xLESke61YCIOOV29nubW2OfqyAks7ZnlcDO0CYvfmLJ2eAchOBNwi5a0V8Bx8y0d9k=
+  - secure: ELNiyqY5oFneuFYBEYfEt8tIt1inBvMUJz8ds3/I3TkIJC0FVUni3lik2fpUduYQbmBGJK5YZq8CArguqiCZJ208pOuQl3I3BhlBTg6PoPwt0HJ4iifCtHmjZZlT5PIBbiUnwtGKqnwFWhNyKTmU+w5l1FHiHZfcFg8XKiqRXvo=
+  - secure: XpsRadPU7kS6ifka84STqyOGNUQU82cMORnG5AR+EB7SlvDmYgBxoFeVxRePd+/0uAj4+j+F0gKYj8tWBVvjtThDRGF8SRtn5758COImgj1+qkaGPmCJu7br4Mrke1+OX2hJS3pktSDrz4XzcjCA9pJpNT9f0ssgkZu8U8Dcskk=
+  - secure: EOpwKZ+JHXzPqKvogkGddRDf3htOvnbcM042LjniQtF9w2A7S3tXoV1IesjRvDXjszTvQ9CU4atNhF6s+dzHjclS6sXVyC3VieZ+ppPndr7aMjoHlhsWwtnzsUomu3oetOe6oSBCdGi+BrCuhjCHlFyQNKrbIlWAeSxvr4pf/6c=
+  - secure: Xx/E1CtGmhEG79UM8e6VX0sDIbbIMLhmtAipOYsQE9SVCYaz7pVeH4oPCAG0vUHER8CQ/FDlWSe3dy8UfTlo/GwqHz6UJomARv9tDtORUpw3s5sFBU8INTKsin2pMRgbGHv6zplVLHefgq03pEwdAPZ0mXShd/oPo4Z6b5ZDACU=

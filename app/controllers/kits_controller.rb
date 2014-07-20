@@ -29,7 +29,7 @@ class KitsController < ApplicationController
       @posts = @kit.posts.order(created_at: :desc)
     end
 
-    @msg = Post.where("message = true AND recipient_id = ?", current_user).last
+    @msg = Post.where("message = true AND recipient_id = ?", @kit.client_id).last
 
     @collections = @kit.owned_tags
   end
