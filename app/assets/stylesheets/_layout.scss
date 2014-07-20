@@ -1,3 +1,7 @@
+html {
+  border-top: 6px solid tint($primary, 40);
+}
+
 .container {
   @include outer-container();
   margin-bottom: $nav-height * 2;

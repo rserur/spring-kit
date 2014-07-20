@@ -90,5 +90,4 @@ class PostsController < ApplicationController
         :title, :body, :collection_list, :media, :message
       )
     end
-
 end
