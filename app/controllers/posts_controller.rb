@@ -22,7 +22,8 @@ class PostsController < ApplicationController
         number = @post.recipient.phone
 
         if !number.empty?
-          message = ActionController::Base.helpers.strip_tags(@post.body)
+          message = Nokogiri::HTML(@post.body)
+          message = message.xpath("//text()").to_s
           message += " - SpringKit Message from " + @post.recipient.full_name
           send_text_message(@post.recipient.phone, message)
           flash[:notice] = "Post sent to #{@post.recipient.role} as text message

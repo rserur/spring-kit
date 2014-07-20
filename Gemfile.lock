@@ -266,6 +266,7 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   neat
+  nokogiri
   paperclip (~> 4.1)
   pg
   pry-rails
