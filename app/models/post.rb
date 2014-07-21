@@ -22,4 +22,10 @@ class Post < ActiveRecord::Base
 
     collection_list
   end
+
+  def self.search(search, kit)
+    return all unless search.present?
+
+    where("title ILIKE :search OR body ILIKE :search", search: "%#{search}%")
+  end
 end

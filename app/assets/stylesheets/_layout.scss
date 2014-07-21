@@ -17,9 +17,55 @@ html {
     }
 
     span {
-      @include span-columns(6);
+
+      &#title{
+        @include span-columns(4);
+        font-family: $serif;
+      }
+
+      &#search {
+
+        input[type=text] {
+          @include span-columns(4);
+          border-radius: 0;
+          height: 2.5rem;
+          border: 1px solid tint($primary, 50);
+          color: $primary;
+          -webkit-box-shadow: 5px 5px 0px 0px tint($primary, 50);
+          -moz-box-shadow:    5px 5px 0px 0px tint($primary, 50);
+          box-shadow:         5px 5px 0px 0px tint($primary, 50);
+        }
+
+        input::-webkit-input-placeholder {
+          color: tint($primary, 30);
+        }
+        input::-moz-placeholder {
+          color: tint($primary, 30);
+        }
+        input:-moz-placeholder {   /* Older versions of Firefox */
+          color: tint($primary, 30);
+        }
+        input:-ms-input-placeholder {
+          color: tint($primary, 30);
+        }
+
+        input[type=submit] {
+          @include span-columns(1);
+          border-radius: 0;
+          height: 2.5rem;
+          background-color: white;
+          border: 1px solid tint($primary, 50);
+          color: tint($primary, 10);
+          -webkit-box-shadow: 5px 5px 0px 0px tint($primary, 50);
+          -moz-box-shadow:    5px 5px 0px 0px tint($primary, 50);
+          box-shadow:         5px 5px 0px 0px tint($primary, 50);
+          border-top-right-radius: 0.2em;
+          border-bottom-right-radius: 0.2em;
+        }
+      }
 
       &#plus {
+        @include span-columns(3);
         text-align: right;
         font-size: $base-font-size * 0.95;
         cursor: pointer;
@@ -235,6 +281,13 @@ article {
 
     input {
       border-color: tint($sub-primary, 40);
+    }
+
+    i {
+      float: right;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: tint($sub-primary, 20);
     }
   }
 
