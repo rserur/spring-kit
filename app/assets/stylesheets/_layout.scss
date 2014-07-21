@@ -2,6 +2,15 @@ html {
   border-top: 6px solid tint($primary, 40);
 }
 
+::selection {
+  background: $tertiary; /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: $tertiary; /* Gecko Browsers */
+  color: white;
+}
+
 .container {
   @include outer-container();
   margin-bottom: $nav-height * 2;
@@ -17,12 +26,73 @@ html {
     }
 
     span {
-      @include span-columns(6);
+
+      &#title{
+        @include span-columns(4);
+        font-family: $serif;
+
+        em {
+          font-family: $sans-serif;
+          color: $primary;
+        }
+      }
+
+      &#search {
+
+        input[type=text] {
+          @include span-columns(4);
+          border-radius: 0;
+          height: 2.5rem;
+          border: 1px solid tint($tertiary, 50);
+          color: $primary;
+          -webkit-box-shadow: 5px 5px 0px 0px tint($tertiary, 30);
+          -moz-box-shadow:    5px 5px 0px 0px tint($tertiary, 30);
+          box-shadow:         5px 5px 0px 0px tint($tertiary, 30);
+        }
+
+        input::-webkit-input-placeholder {
+          color: tint($primary, 30);
+        }
+        input::-moz-placeholder {
+          color: tint($primary, 30);
+        }
+        input:-moz-placeholder {   /* Older versions of Firefox */
+          color: tint($primary, 30);
+        }
+        input:-ms-input-placeholder {
+          color: tint($primary, 30);
+        }
+
+        input[type=submit] {
+          @include span-columns(1);
+          border-radius: 0;
+          height: 2.5rem;
+          background-color: white;
+          border: 1px solid tint($tertiary, 50);
+          color: tint($tertiary, 10);
+          -webkit-box-shadow: 5px 5px 0px 0px tint($tertiary, 30);
+          -moz-box-shadow:    5px 5px 0px 0px tint($tertiary, 30);
+          box-shadow:         5px 5px 0px 0px tint($tertiary, 30);
+          border-top-right-radius: 0.2em;
+          border-bottom-right-radius: 0.2em;
+        }
+
+        input[type=text]:focus {
+          color: $tertiary;
+        }
+      }
 
       &#plus {
+        @include span-columns(3);
         text-align: right;
         font-size: $base-font-size * 0.95;
         cursor: pointer;
+        float: right;
+
+        em {
+          font-family: $sans-serif;
+          color: $primary;
+        }
       }
     }
 
@@ -112,7 +182,7 @@ html {
       border-left: 1px solid shade($primary, 20);
       border-right: 1px solid shade($primary, 20);
       border-bottom: 1px solid $primary;
-      background-color: tint($primary, 60);
+      background-color: #c6f2e6;
       padding: 1em 0.5em;
 
       a {
@@ -236,6 +306,13 @@ article {
     input {
       border-color: tint($sub-primary, 40);
     }
+
+    i {
+      float: right;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: tint($sub-primary, 20);
+    }
   }
 
 
@@ -245,7 +322,7 @@ article {
     float: left;
     padding: 1rem;
     margin: 0;
-    background-color: tint($primary,95);
+    background-color: tint($primary,85);
     border-left: 1px solid tint($primary, 70);
     border-top: 1px solid tint($primary, 70);
 
@@ -267,7 +344,7 @@ article {
     }
     &:hover {
       @include transition (all 0.2s ease-in-out);
-      color: lighten($base-font-color,20);
+      color: tint($tertiary, 40);
       background-color: #fff;
     }
 
@@ -279,11 +356,14 @@ article {
 
     &.from-client {
 
+      color: shade($primary, 40);
+
       .post-head {
 
         h4 {
           @include span-columns(9);
           font-size: 1.2rem;
+          color: $primary;
         }
         .post-buttons {
 
@@ -311,6 +391,13 @@ article {
         color: $primary;
         margin-bottom: 2.8rem;
       }
+
+      .text {
+        background-color: tint($primary, 70);
+        border-radius: 0.2rem;
+        padding: 0.8em;
+        margin: 0.8em 0;
+      }
     }
 
     &.from-practitioner {
@@ -321,6 +408,7 @@ article {
           @include span-columns(9);
           font-size: 1.2rem;
           float: right;
+          color: $tertiary;
         }
         .post-buttons {
 
@@ -350,6 +438,13 @@ article {
       .post-details {
         color: $tertiary;
         margin-bottom: 2.8rem;
+      }
+
+      .text {
+        background-color: tint($tertiary, 80);
+        border-radius: 0.2rem;
+        padding: 0.8em;
+        margin: 0.8em 0;
       }
     }
   }
@@ -383,7 +478,8 @@ article {
 
   .from-practitioner {
     text-align: right;
-    background-color: tint($tertiary, 95);
+    color: shade($tertiary, 15);
+    background-color: tint($tertiary, 90);
     border: 1px solid tint($tertiary, 70);
 
     a {
@@ -432,7 +528,7 @@ article {
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 55), tint($primary, 80));
+  @include linear-gradient(tint($primary, 40), tint($primary, 50));
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -453,7 +549,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: shade($primary, 10);
+        color: shade($primary, 15);
       }
     }
   }
@@ -463,7 +559,7 @@ nav {
 .blank {
   color: tint($primary, 70);
   font-size: 15rem;
-  height: 2em;
+  min-height: 2em;
   line-height: 2em;
   text-align: center;
 

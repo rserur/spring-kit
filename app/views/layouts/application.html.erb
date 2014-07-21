@@ -4,6 +4,7 @@
   <title>SpringKit</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,15 +13,24 @@
     <header>
 
       <% if current_user && @kit && @kit.client %>
-        <h1>
-          <span class="title">
+        <span id="title">
+          <h1>
             <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>
-          </span>
-        <span id="plus">
-           <i class="fa fa-plus-circle"></i> Add
+          </h1>
+          <em>Kit Owner: <%= @kit.client.full_name %></em><br>
         </span>
-        </h1>
-        <em>Kit Owner: <%= @kit.client.full_name %></em>
+        <span id="search">
+          <%= simple_form_for :search, url: kit_path(@kit), method: 'get' do |f| %>
+            <%= f.input :terms, placeholder: "Search posts...", label: false %>
+            <%= f.submit "Go" %>
+          <% end %>
+        </span>
+        <span id="plus">
+          <h1>
+            <i class="fa fa-plus-circle"></i> Add
+          </h1>
+          <em>Signed in as <%= current_user.email %></em>
+        </span>
       <% elsif current_user && @kits %>
         <h1>
           <span class="title">
@@ -105,7 +115,7 @@
 
             <li>
               <a href="<%= edit_user_registration_path %>">
-                <i class="fa fa-user"></i> Edit Profile (signed in as <%= current_user.email %>)
+                <i class="fa fa-user"></i> Edit Profile
               </a>
             </li>
 

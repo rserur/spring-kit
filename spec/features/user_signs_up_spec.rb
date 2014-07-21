@@ -20,7 +20,6 @@ feature "user signs up", %q{
     fill_in "Email", with: "example@example.com"
     select organization.name, from: 'user[organization_id]'
     fill_in "Password", with: "abcd1234", match: :prefer_exact
-    fill_in "Password confirmation", with: "abcd1234"
     select "practitioner", from: 'user[role]'
     click_on "Sign up"
 

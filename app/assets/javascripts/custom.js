@@ -11,9 +11,13 @@ $(document).ready(function() {
         }
     }
 
-    $("#plus").click(function() {
-        $(".blank").last().toggle();
-        $("#add").toggle(1000, 'easeOutQuart');
+    $("#plus, #add-exit, .blank").click(function() {
+        $(".blank").last().toggle({
+            direction: 'right'
+        }, 1000, 'easeOutQuint');
+        $("#add").toggle({
+            direction: 'left'
+        }, 1000, 'easeOutQuint');
     });
 
     $(".notice, .alert").delay(2000).hide(1000, 'easeOutBounce');
@@ -30,15 +34,10 @@ $(document).ready(function() {
         })
     });
 
-    $(".blank").click(function() {
-        $(".blank").last().toggle();
-        $("#add").toggle(1000, 'easeOutQuart');
-    });
-
     function fillPosts() {
 
         while (!(($(".post").length) % 3 == 1)) {
-            $("article").append("<div class='post blank'><i class='fa fa-cube'></i></div>");
+            $("article").prepend("<div class='post blank'><i class='fa fa-cube'></i></div>");
         }
     }
 });

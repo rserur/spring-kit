@@ -8,6 +8,9 @@
           <li class="kit">
             <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>: <%= kit.client.last_name %>, <%= kit.client.first_name %></a>
             <br>
+            <div id="chart">
+              <%= area_chart Post.where("kit_id = #{kit.id}").group_by_day(:created_at, last: 7).count %>
+            </div>
             <strong>Last Updated:</strong>
             <%= kit.last_updated %>
             <br>
