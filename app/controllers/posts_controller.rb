@@ -22,10 +22,7 @@ class PostsController < ApplicationController
         number = @post.recipient.phone
 
         if !number.empty?
-          message = Nokogiri::HTML(@post.body)
-          message = message.xpath("//text()").to_s
-          message += " - SpringKit Message from " + @post.recipient.full_name
-          send_text_message(@post.recipient.phone, message)
+          send_text_message(@post.recipient.phone, @post.body)
           flash[:notice] = "Post sent to #{@post.recipient.role} as text message
           and added to kit."
         else
@@ -72,6 +69,9 @@ class PostsController < ApplicationController
   end
 
   def send_text_message(recipient, message)
+    body = Nokogiri::HTML(message)
+    body = body.xpath("//text()").to_s
+    body += " - SpringKit Message from " + @post.recipient.full_name
     number_to_send_to = recipient
 
     twilio_sid = ENV['TWILIO_SID']
@@ -83,7 +83,7 @@ class PostsController < ApplicationController
     @twilio_client.account.sms.messages.create(
       from: "+1#{twilio_phone_number}",
       to: number_to_send_to,
-      body: message
+      body: body
     )
   end
 
