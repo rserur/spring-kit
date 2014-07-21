@@ -182,7 +182,7 @@ html {
       border-left: 1px solid shade($primary, 20);
       border-right: 1px solid shade($primary, 20);
       border-bottom: 1px solid $primary;
-      background-color: tint($primary, 60);
+      background-color: #c6f2e6;
       padding: 1em 0.5em;
 
       a {
@@ -344,7 +344,7 @@ article {
     }
     &:hover {
       @include transition (all 0.2s ease-in-out);
-      color: lighten($base-font-color,20);
+      color: tint($tertiary, 40);
       background-color: #fff;
     }
 

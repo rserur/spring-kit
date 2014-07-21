@@ -74,4 +74,6 @@ gem 'rake'
 gem 'twilio-ruby'
 gem 'nokogiri'
 gem 'jquery-ui-rails'
+gem 'chartkick'
+gem 'groupdate'
 
