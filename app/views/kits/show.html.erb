@@ -63,16 +63,19 @@
 
     <% end %>
 
-        <%= sanitize post.body %>
-
-        <em>- <%= post.sender.first_name %></em>
-
-        <% if !post.collection_list.empty? %>
+        <div class="text">
+          <%= sanitize post.body %>
 
           <p>
-            Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %>
+            <em>- <%= post.sender.first_name %></em>
           </p>
-
+        </div>
+        <% if !post.collection_list.empty? %>
+          <div class="text">
+            <p>
+              Collections: <%= raw post.collection_list.map { |col| link_to col, kit_collection_path(@kit, col) }.join(', ') %>
+            </p>
+          </div>
         <% end %>
 
 

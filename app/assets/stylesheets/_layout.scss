@@ -322,7 +322,7 @@ article {
     float: left;
     padding: 1rem;
     margin: 0;
-    background-color: tint($primary,95);
+    background-color: tint($primary,85);
     border-left: 1px solid tint($primary, 70);
     border-top: 1px solid tint($primary, 70);
 
@@ -356,6 +356,8 @@ article {
 
     &.from-client {
 
+      color: shade($primary, 40);
+
       .post-head {
 
         h4 {
@@ -388,6 +390,13 @@ article {
       .post-details {
         color: $primary;
         margin-bottom: 2.8rem;
+      }
+
+      .text {
+        background-color: tint($primary, 70);
+        border-radius: 0.2rem;
+        padding: 0.8em;
+        margin: 0.8em 0;
       }
     }
 
@@ -430,6 +439,13 @@ article {
         color: $tertiary;
         margin-bottom: 2.8rem;
       }
+
+      .text {
+        background-color: tint($tertiary, 80);
+        border-radius: 0.2rem;
+        padding: 0.8em;
+        margin: 0.8em 0;
+      }
     }
   }
 
@@ -462,7 +478,8 @@ article {
 
   .from-practitioner {
     text-align: right;
-    background-color: tint($tertiary, 95);
+    color: shade($tertiary, 15);
+    background-color: tint($tertiary, 90);
     border: 1px solid tint($tertiary, 70);
 
     a {
@@ -511,8 +528,7 @@ article {
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 10), tint($primary, 20));
-  color: white;
+  @include linear-gradient(tint($primary, 40), tint($primary, 50));
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -533,7 +549,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: white;
+        color: shade($primary, 15);
       }
     }
   }

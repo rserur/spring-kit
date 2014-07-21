@@ -12,8 +12,12 @@ $(document).ready(function() {
     }
 
     $("#plus, #add-exit, .blank").click(function() {
-        $(".blank").last().toggle(1000, 'easeOutQuint');
-        $("#add").toggle();
+        $(".blank").last().toggle({
+            direction: 'right'
+        }, 1000, 'easeOutQuint');
+        $("#add").toggle({
+            direction: 'left'
+        }, 1000, 'easeOutQuint');
     });
 
     $(".notice, .alert").delay(2000).hide(1000, 'easeOutBounce');

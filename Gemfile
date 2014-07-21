@@ -73,3 +73,5 @@ gem 'rails_12factor', group: :production
 gem 'rake'
 gem 'twilio-ruby'
 gem 'nokogiri'
+gem 'jquery-ui-rails'
+
