@@ -2,6 +2,15 @@ html {
   border-top: 6px solid tint($primary, 40);
 }
 
+::selection {
+  background: $tertiary; /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: $tertiary; /* Gecko Browsers */
+  color: white;
+}
+
 .container {
   @include outer-container();
   margin-bottom: $nav-height * 2;
@@ -21,6 +30,11 @@ html {
       &#title{
         @include span-columns(4);
         font-family: $serif;
+
+        em {
+          font-family: $sans-serif;
+          color: $primary;
+        }
       }
 
       &#search {
@@ -29,11 +43,11 @@ html {
           @include span-columns(4);
           border-radius: 0;
           height: 2.5rem;
-          border: 1px solid tint($primary, 50);
+          border: 1px solid tint($tertiary, 50);
           color: $primary;
-          -webkit-box-shadow: 5px 5px 0px 0px tint($primary, 50);
-          -moz-box-shadow:    5px 5px 0px 0px tint($primary, 50);
-          box-shadow:         5px 5px 0px 0px tint($primary, 50);
+          -webkit-box-shadow: 5px 5px 0px 0px tint($tertiary, 30);
+          -moz-box-shadow:    5px 5px 0px 0px tint($tertiary, 30);
+          box-shadow:         5px 5px 0px 0px tint($tertiary, 30);
         }
 
         input::-webkit-input-placeholder {
@@ -54,13 +68,17 @@ html {
           border-radius: 0;
           height: 2.5rem;
           background-color: white;
-          border: 1px solid tint($primary, 50);
-          color: tint($primary, 10);
-          -webkit-box-shadow: 5px 5px 0px 0px tint($primary, 50);
-          -moz-box-shadow:    5px 5px 0px 0px tint($primary, 50);
-          box-shadow:         5px 5px 0px 0px tint($primary, 50);
+          border: 1px solid tint($tertiary, 50);
+          color: tint($tertiary, 10);
+          -webkit-box-shadow: 5px 5px 0px 0px tint($tertiary, 30);
+          -moz-box-shadow:    5px 5px 0px 0px tint($tertiary, 30);
+          box-shadow:         5px 5px 0px 0px tint($tertiary, 30);
           border-top-right-radius: 0.2em;
           border-bottom-right-radius: 0.2em;
+        }
+
+        input[type=text]:focus {
+          color: $tertiary;
         }
       }
 
@@ -69,6 +87,12 @@ html {
         text-align: right;
         font-size: $base-font-size * 0.95;
         cursor: pointer;
+        float: right;
+
+        em {
+          font-family: $sans-serif;
+          color: $primary;
+        }
       }
     }
 
@@ -337,6 +361,7 @@ article {
         h4 {
           @include span-columns(9);
           font-size: 1.2rem;
+          color: $primary;
         }
         .post-buttons {
 
@@ -374,6 +399,7 @@ article {
           @include span-columns(9);
           font-size: 1.2rem;
           float: right;
+          color: $tertiary;
         }
         .post-buttons {
 
@@ -485,7 +511,8 @@ article {
 nav {
   @include fill-parent;
   @include box(horizontal, start, stretch);
-  @include linear-gradient(tint($primary, 55), tint($primary, 80));
+  @include linear-gradient(tint($primary, 10), tint($primary, 20));
+  color: white;
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -506,7 +533,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: shade($primary, 10);
+        color: white;
       }
     }
   }

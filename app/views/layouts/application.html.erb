@@ -16,18 +16,19 @@
           <h1>
             <a href="<%= kit_path(@kit) %>"><%= @kit.client.first_name %>'s SpringKit</a>
           </h1>
-          <em>Kit Owner: <%= @kit.client.full_name %></em>
+          <em>Kit Owner: <%= @kit.client.full_name %></em><br>
         </span>
         <span id="search">
           <%= simple_form_for :search, url: kit_path(@kit), method: 'get' do |f| %>
-            <%= f.input :terms, placeholder: "Search", label: false %>
-            <%= f.submit "search" %>
+            <%= f.input :terms, placeholder: "Search posts...", label: false %>
+            <%= f.submit "Go" %>
           <% end %>
         </span>
         <span id="plus">
           <h1>
             <i class="fa fa-plus-circle"></i> Add
           </h1>
+          <em>Signed in as <%= current_user.email %></em>
         </span>
       <% elsif current_user && @kits %>
         <h1>
@@ -113,7 +114,7 @@
 
             <li>
               <a href="<%= edit_user_registration_path %>">
-                <i class="fa fa-user"></i> Edit Profile (signed in as <%= current_user.email %>)
+                <i class="fa fa-user"></i> Edit Profile
               </a>
             </li>
 
