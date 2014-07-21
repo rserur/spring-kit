@@ -9,7 +9,7 @@
             <a href="<%= kit_path(kit) %>">#<%= kit.client.id %>: <%= kit.client.last_name %>, <%= kit.client.first_name %></a>
             <br>
             <div id="chart">
-              <%= area_chart Post.where("kit_id = #{kit.id}").group_by_day(:created_at, last: 7).count %>
+              <%= area_chart Post.where("kit_id = #{kit.id}").group_by_week(:created_at, last: 4).count %>
             </div>
             <strong>Last Updated:</strong>
             <%= kit.last_updated %>
@@ -37,8 +37,8 @@
     <% if !@msgs.empty? %>
       <div class="message">
       <% @msgs.each do |message| %>
-          <h4><%= message.title %></h4>
-          <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em>
+          <a href="<%= kit_path(message.kit_id) %>"><h4><%= message.title %></h4>
+          <em>Sent: <%= message.created_at.to_formatted_s(:long)  %></em></a>
 
           <% if message.media && message.media.content_type == "image/gif" || message.media.content_type == "image/jpg" || message.media.content_type == "image/jpeg" || message.media.content_type == "image/png" %>
 

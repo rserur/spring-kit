@@ -67,7 +67,7 @@
           <%= sanitize post.body %>
 
           <p>
-            <em>- <%= post.sender.first_name %></em>
+            <em>- <%= post.sender.full_name %></em>
           </p>
         </div>
         <% if !post.collection_list.empty? %>

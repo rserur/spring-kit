@@ -25,15 +25,22 @@ class KitsController < ApplicationController
       @kit = Kit.find(params[:kit_id])
       @posts = @kit.posts.order(created_at: :desc).
       tagged_with(params[:collection]).uniq
-    elsif params[:search]
-      @kit = Kit.find(params[:id])
-      @posts = Post.search(params[:search][:terms], @kit)
     else
       @kit = Kit.find(params[:id])
+    end
+
+    if params[:search]
+      @posts = Post.search(params[:search][:terms], @kit)
+    else
       @posts = @kit.posts.order(created_at: :desc)
     end
 
     @msg = Post.where("message = true AND recipient_id = ?", @kit.client_id).last
+
+    if @msg
+      @msg.body = Nokogiri::HTML(@msg.body)
+      @msg.body = @msg.body.xpath("//text()").to_s
+    end
 
     @collections = @kit.owned_tags
   end

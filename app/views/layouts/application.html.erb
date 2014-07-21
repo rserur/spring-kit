@@ -83,9 +83,9 @@
           <% if @msg %>
             <ul>
                 <li>
-                  <strong><%= @msg.title %></strong>
+                  <a href="<%= kit_path(@msg.kit_id) %>"><strong><%= @msg.title %></strong></a>
                   <em><%= @msg.created_at.to_formatted_s(:long)  %></em>
-                  <%= sanitize @msg.body %> - <%= @msg.sender.first_name %>
+                  <span class="truncate"><%= sanitize @msg.body %> - <%= @msg.sender.first_name %></span>
                 </li>
             </ul>
           </div>

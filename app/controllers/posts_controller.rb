@@ -45,7 +45,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @kit = Kit.find(params[:kit_id])
 
-    @msg = Post.where("message = true AND recipient_id = ?", @kit.client_id).last
+    if @msg
+      @msg.body = Nokogiri::HTML(@msg.body)
+      @msg.body = @msg.body.xpath("//text()").to_s
+    end
 
     @collections = @kit.owned_tags
   end
@@ -70,7 +73,7 @@ class PostsController < ApplicationController
 
   def send_text_message(recipient, message)
     body = Nokogiri::HTML(message)
-    body = body.xpath("//text()").to_s
+    body = body.xpath("//text()").to_s.first(100)
     body += " - SpringKit Message from " + @post.recipient.full_name
     number_to_send_to = recipient
 
