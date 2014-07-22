@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
 
-    # Set sender and recipient based on current user.
     if current_user.id == @kit.client_id
       @post.sender_id = current_user.id
       @post.recipient_id = @kit.practitioner_id
