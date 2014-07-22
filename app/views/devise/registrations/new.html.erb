@@ -9,7 +9,7 @@
 <div class="post sign-up">
   <h4>Sign Up</h4>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= minimal_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -30,18 +30,15 @@
 </div>
 
 <div class="post info">
-  <h4>More Information</h4>
+  <h4>Project Information</h4>
   <p>
     "SpringKit" is a proof-of-concept final project, or "Breakable Toy", for my apprenticeship at <a href="http://www.launchacademy.com" target="_blank">Launch Academy</a> in Summer 2014.
   </p>
   <p>
-    Please visit the SpringKit <a href="https://github.com/rserur/spring-kit" target="_blank">GitHub</a> project page for more details.
-  </p>
-  <h4>About the Creator</h4>
-  <p>
-    My name is <a href="http://www.rachaelserur.com" target="_blank">Rachael Serur</a> and I am a new web developer seeking to build applications that improve efficiency and effectiveness in healthcare, research, social services, and similar industries that deserve better software.
+    Visit the SpringKit <a href="https://github.com/rserur/spring-kit" target="_blank">GitHub</a> project page for more details.
   </p>
   <p>
     Please feel welcome to contact me at <a href="http://www.linkedin.com/in/rachaelserur/" target="_blank">LinkedIn</a> if you would like to collaborate in turning great ideas into real projects or startups!
+  <p><a href="http://www.rachaelserur.com" target="_blank">- Rachael Serur</a></p>
   </div>
 </div>

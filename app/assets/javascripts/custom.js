@@ -28,9 +28,7 @@ $(document).ready(function() {
             spellcheck: true,
             paragraphy: false,
             borderColor: "#068587",
-            buttons: ['undo', 'redo', 'sep', 'bold', 'italic', 'underline', 'outdent',
-                'indent', 'createLink'
-            ]
+            buttons: ['bold', 'italic', 'underline', 'insertOrderedList', 'insertUnorderedList', 'insertVideo', 'createLink']
         })
     });
 

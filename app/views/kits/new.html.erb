@@ -3,7 +3,7 @@
 
   <%= simple_form_for @kit do |f| %>
 
-  <%= f.association :client, label_method: :first_name, value_method: :id, include_blank: false, as: :collection_select, collection: @clients %>
+  <%= f.association :client, label_method: :full_name, value_method: :id, include_blank: false, as: :collection_select, collection: @clients %>
   <%= f.submit %>
 
 

@@ -13,6 +13,7 @@ html {
 
 .container {
   @include outer-container();
+  padding: 0 1em;
   margin-bottom: $nav-height * 2;
 }
 
@@ -124,6 +125,7 @@ html {
   }
 
 .top {
+
   @include media($mobile) {
     @include span-columns(12);
     padding: 2rem;
@@ -131,9 +133,9 @@ html {
 
   @include span-columns(12);
 
-  -webkit-box-shadow: 10px 10px 0px 0px $sub-primary;
-  -moz-box-shadow:    10px 10px 0px 0px $sub-primary;
-  box-shadow:         10px 10px 0px 0px $sub-primary;
+  -webkit-box-shadow: 10px 10px 0px 0px tint($sub-primary, 20);
+  -moz-box-shadow:    10px 10px 0px 0px tint($sub-primary, 20);
+  box-shadow:         10px 10px 0px 0px tint($sub-primary, 20);
 
   a {
     color: $light;
@@ -143,7 +145,7 @@ html {
     }
   }
 
-  background-color: tint($primary, 20);
+  background-color: tint($primary, 40);
   padding: 2rem;
   margin-bottom: 2rem;
 
@@ -160,11 +162,7 @@ html {
       &.title {
         font-family: $serif;
         margin-top: 0;
-
-        a {
-          color: shade($sub-primary,50);
-        }
-
+        color: shade($sub-primary, 25);
       }
 
     }
@@ -183,7 +181,7 @@ html {
       border-right: 1px solid shade($primary, 20);
       border-bottom: 1px solid $primary;
       background-color: #c6f2e6;
-      padding: 1em 0.5em;
+      padding: 1em 2em;
 
       a {
         font-weight: 700;
@@ -213,6 +211,13 @@ html {
   .messages {
     @include span-columns(4 of 12);
 
+    .truncate {
+      @include span-columns(12);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     div.message:first-of-type {
       border-top: 5px solid shade($primary, 20);
     }
@@ -223,7 +228,7 @@ html {
       border-right: 1px solid shade($primary, 20);
       border-bottom: 1px solid $primary;
       background-color: tint($primary, 60);
-      padding: 1em 0.5em;
+      padding: 1em 2em;
 
       h4 {
         color: $sub-primary;
@@ -310,8 +315,12 @@ article {
     i {
       float: right;
       cursor: pointer;
-      font-size: 1.5em;
+      font-size: 1.2em;
       color: tint($sub-primary, 20);
+
+      &:hover {
+        background-color: tint($primary, 70);
+      }
     }
   }
 
@@ -322,7 +331,7 @@ article {
     float: left;
     padding: 1rem;
     margin: 0;
-    background-color: tint($primary,85);
+    background-color: tint($primary,95);
     border-left: 1px solid tint($primary, 70);
     border-top: 1px solid tint($primary, 70);
 
@@ -334,7 +343,7 @@ article {
       h4 {
         margin-bottom: 0.5rem;
       }
-      a {
+      a, .f-link {
        font-weight: 700;
       }
       p {
@@ -356,7 +365,7 @@ article {
 
     &.from-client {
 
-      color: shade($primary, 40);
+      color: shade($primary, 30);
 
       .post-head {
 
@@ -367,6 +376,8 @@ article {
         }
         .post-buttons {
 
+          font-size: 0.9em;
+          font-weight: 700;
           @include span-columns(3);
 
           input {
@@ -375,6 +386,7 @@ article {
 
           a {
             color: tint($primary, 70);
+            font-weight: 700;
 
             :hover {
               color: $primary;
@@ -393,7 +405,7 @@ article {
       }
 
       .text {
-        background-color: tint($primary, 70);
+        background-color: tint($primary, 90);
         border-radius: 0.2rem;
         padding: 0.8em;
         margin: 0.8em 0;
@@ -441,7 +453,7 @@ article {
       }
 
       .text {
-        background-color: tint($tertiary, 80);
+        background-color: tint($tertiary, 93);
         border-radius: 0.2rem;
         padding: 0.8em;
         margin: 0.8em 0;
@@ -478,15 +490,18 @@ article {
 
   .from-practitioner {
     text-align: right;
-    color: shade($tertiary, 15);
-    background-color: tint($tertiary, 90);
-    border: 1px solid tint($tertiary, 70);
+    color: shade($tertiary, 10);
+    background-color: tint($tertiary, 97);
+    border: 1px solid tint($tertiary, 80);
 
     a {
       color: $tertiary;
     }
 
     .post-buttons {
+
+      font-size: 0.9em;
+      font-weight: 700;
 
       a {
         color: tint($tertiary, 70);
@@ -549,7 +564,7 @@ nav {
       a {
         font-size: 1.2em;
         font-weight: 700;
-        color: shade($primary, 15);
+        color: shade($primary, 25);
       }
     }
   }
