@@ -25,13 +25,11 @@ class KitsController < ApplicationController
       @kit = Kit.find(params[:kit_id])
       @posts = @kit.posts.order(created_at: :desc).
       tagged_with(params[:collection]).uniq
-    else
+    elsif params[:search]
       @kit = Kit.find(params[:id])
-    end
-
-    if params[:search]
       @posts = Post.search(params[:search][:terms], @kit)
     else
+      @kit = Kit.find(params[:id])
       @posts = @kit.posts.order(created_at: :desc)
     end
 
