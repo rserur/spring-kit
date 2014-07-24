@@ -7,7 +7,7 @@
 
 What is SpringKit?
 -------------------
-"SpringKit" is a proof-of-concept Ruby on Rails, PostgreSQL, and Bourbon-styled "Breakable Toy": a social media app for counselors, therapists, and other healthcare practitioners that helps actively engage clients in collecting resources related to ongoing treatment.
+"SpringKit" is a proof-of-concept Ruby on Rails, PostgreSQL, Twilio API, and Bourbon-styled "Breakable Toy": a social media app for counselors, therapists, and other healthcare practitioners that helps actively engage clients in collecting resources related to ongoing treatment.
 
 It provides a private space (a "SpringKit") for clients to save helpful PDFs, documents, images, or video that a practitioner can also view and contribute to. Either party can also send posts as text messages for quick communication.
 
